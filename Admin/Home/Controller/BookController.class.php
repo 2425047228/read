@@ -54,7 +54,7 @@ class BookController extends CommonController
                 $bookCover = $imageFileInfo['savepath'].$imageFileInfo['savename'];
                 $bookBanner = $bannerFileInfo['savepath'].$bannerFileInfo['savename'];
                 $isHot = $isHotValidate == 1 ? I('post.is_hot') : 0;    //是否为最火
-                $categoryIds = implode(',', I('post.category_ids'));
+                $categories = I('post.category_ids');
                 try {
                     $bookInfo = M('Book')->add([
                         'book_name' => I('post.book_name'),
@@ -62,7 +62,6 @@ class BookController extends CommonController
                         'book_synopsis' => I('post.book_synopsis'),
                         'book_cover' => $bookCover,
                         'book_banner' => $bookBanner,
-                        'category_ids' => $categoryIds,
                         'is_hot' => $isHot,
                         'book_file' => $bookFile,
                         'number_of_words' => I('post.number_of_words'),
@@ -71,13 +70,26 @@ class BookController extends CommonController
                     if (!$bookInfo) {
                         $this->returnCode(0, '添加失败！');
                     }
+                    $correlation = M('Book_categories');
+                    foreach ($categories as $v) {
+                        $addInfo = $correlation->add(['book_id'=>$bookInfo, 'category_id' => $v]);
+                        if (!$addInfo) {
+                            $this->returnCode(0, '添加失败！');
+                        }
+                    }
                 } catch (\Exception $e) {
                     M()->rollback();
                     $this->returnCode(0, '数据格式错误，添加失败！');
                 }
                 M()->commit();
+                ob_end_clean();
+                $returnInfo = $this->returnCode(1, '添加成功！', false);
+                print $returnInfo;
+                header('HTTP/1.1 200 OK');
+                flush();
+                ob_end_flush();    //销毁并输出缓冲内容
                 $this->sendRequest(array('bookId' => $bookInfo, 'bookFile' => $bookFile));
-                $this->returnCode(1, '添加成功！');
+
             }
         }
 

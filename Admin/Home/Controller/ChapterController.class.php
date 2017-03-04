@@ -61,6 +61,7 @@ class ChapterController extends Controller
                 //sleep(1);
             }
             fclose($fp);
+            exit;
             //M()->commit();
         }
 

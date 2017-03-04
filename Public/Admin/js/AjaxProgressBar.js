@@ -8,12 +8,27 @@ function progressBarData(url,method,takeOver,evt) {
     //判断请求是否成功
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            var info = eval('('+xhr.responseText+')');
-            if (info.code != 1) {
-                alert(info.msg);
-            } else {
-                alert(info.msg);
-                location.href = '__CONTROLLER__/b_list';
+            if (xhr.responseText != '') {
+                var info = eval('('+xhr.responseText+')');
+                if (info.code != 1) {
+                    alert(info.msg);
+                } else {
+                    alert(info.msg);
+                    location.href = '__CONTROLLER__/b_list';
+                }
+            }
+        }
+        if (xhr.readyState == 3) {
+            console.log(xhr.responseText);
+            if (xhr.responseText != '') {
+                var info = eval('('+xhr.responseText+')');
+                console.log(info);
+                if (info.code != 1) {
+                    alert(info.msg);
+                } else {
+                    alert(info.msg);
+                    return location.href = '__CONTROLLER__/b_list';
+                }
             }
         }
     };

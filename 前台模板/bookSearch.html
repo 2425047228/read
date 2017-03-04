@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header class="search_head">
+			<p><input type="text" name="" id="search_input" value="" placeholder="请输入作者或书名"/><em class="color_black" id="search">搜索</em></p>
+		</header>
+		<article class="search_art">
+			<section class="search_history">
+				<div id="" class="search_history_list">
+					<h3>大家都在搜</h3>
+					<ul>
+						<a href="#"><li class="search_history_li1">小说一小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li class="search_history_li1">小说一小说一</li></a>
+						<a href="#"><li class="search_history_li1">小说一小说一</li></a>
+					</ul>
+				</div>
+				<div id="search_history2" class="search_history_list">
+					<p></p>
+					<h3 class="search_history_h3_blue">搜索历史<em id="search_del"></em></h3>
+					<ul>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+						<a href="#"><li>小说一</li></a>
+					</ul>
+				</div>
+			</section>
+			<section class="novel_list">
+        			<ul>
+        				<!--列表-->
+        				
+        			</ul>
+        		</section>
+        		<!--无内容是显示-->
+        		<section class="novel_secnull">无搜索结果</section>
+		</article>
+		<script type="text/javascript">
+			$(function(){
+				//清空历史
+				$('#search_del').click(function(){
+					//请求后台后执行
+					$('#search_history2').remove();
+				});
+				//搜索
+				$('#search').click(function(){
+					if($('#search_input').val().length==0){
+						return false;
+					}
+					//请求后台后执行
+					$('.search_history').hide();
+					$('.novel_secnull').hide();
+					$('.novel_list ul li').remove();
+					
+					var html='<li class="novel_list_litop"><a href="#"><div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div><div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div></a></li>';
+					$('.novel_list ul').append(html);
+					//如果搜索无结果,显示novel_secnull
+				});
+			});
+		</script>
+	</body>
+</html>

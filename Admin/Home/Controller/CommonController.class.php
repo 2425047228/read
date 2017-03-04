@@ -68,12 +68,17 @@ class CommonController extends EmptyController
      * json返回数据码方法
      * @param Int $code 返回码，1 为成功，其他失败
      * @param String $msg 返回信息
+     * @param Bool $isPrint 是否直接结束脚本并输出
      * @return json格式字符串
      */
-    protected function returnCode($code, $msg)
+    protected function returnCode($code, $msg, $isPrint = true)
     {
         $jsonArray = array('code' => $code, 'msg' => $msg);
-        exit(json_encode($jsonArray));
+        $returnInfo = json_encode($jsonArray);
+        if ($isPrint) {
+            exit($returnInfo);
+        }
+        return $returnInfo;
     }
 
     protected function sendRequest($data = array())
@@ -83,6 +88,7 @@ class CommonController extends EmptyController
         $ch = curl_init("http://{$_SERVER['HTTP_HOST']}$uri");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_exec($ch);
     }

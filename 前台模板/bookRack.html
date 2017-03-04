@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>书架</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="rack_body">
+		<header class="rack_head">
+			<h3>足迹</h3>
+			<div class="rack_head_top">
+				<div class="rack_head_top_left">
+					<img src="./images/test_bg.png" alt=""/>
+				</div>
+				<div class="rack_head_top_right">
+					<h4>小说名小说名小说名小说名小说名小说名小说名</h4>
+					<p class="color_hui">作者：<em>谁谁谁</em></p>
+					<p class="color_hui">阅读时间：<em>2017.03.23</em></p>
+				</div>
+			</div>
+		</header>
+		<article class="rack_art"> 
+			<h3>我的书架<em class="color_zhu" id="rack_manager">管理</em></h3>
+			<div class="rack_art_edit"><a href="#" class="color_black">增加</a><a href="javascript:;" class="color_black" id="edit_delete">删除</a></div>
+			<!--书架有内容显示内容-->
+			<section class="novel_list">
+        			<ul>
+        				<li class="novel_list_litop">
+        					<a href="#">
+	        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+	        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        					</a>
+        					<em class="novel_list_del"></em>
+        				</li>
+        				<li class="novel_list_litop"><a href="#">
+        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        				</a><em class="novel_list_del"></em></li>
+        				<li class="novel_list_litop"><a href="#">
+        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        				</a><em class="novel_list_del"></em></li>
+        				<li class="novel_list_litop"><a href="#">
+        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        				</a><em class="novel_list_del"></em></li>
+        				<li class="novel_list_litop"><a href="#">
+        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        				</a><em class="novel_list_del"></em></li>
+        				<li class="novel_list_litop"><a href="#">
+        					<div class="index_img"><img src="images/test_bg.png" class="index_img_cover"/><img src="images/test_jb.png" class="index_img_mark"/></div>
+        					<div class="index_mes"><h5 class="color_black">三生三世十里桃花小说名</h5><p>作者：<em>不知道</em></p><p><em>123人在读</em><span>432万字</span></p></div>
+        				</a><em class="novel_list_del"></em></li>
+        			</ul>
+        		</section> 
+        		<!--书架无内容是显示-->
+        		<section class="novel_secnull">暂无相关数据</section>
+		</article>
+		<footer>
+        		<ul class="novel_btn">
+        			<li class="novel_btn1"><a href="#" class="color_hui"><em class="novel_btn_false"></em>首页</a></li>
+        			<li class="novel_btn2"><a href="#" class="color_hui"><em class="novel_btn_false"></em>书城</a></li>
+        			<li class="novel_btn3"><a href="#" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
+        			<li class="novel_btn4"><a href="#" class="color_zhu"><em class="novel_btn_true"></em>书架</a></li>
+        			<li class="novel_btn5"><a href="#" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
+        		</ul>
+        </footer>
+        <script type="text/javascript">
+        		$(function(){
+        			var bool=true;
+        			//点击管理
+        			$('#rack_manager').click(function(){
+        				if(bool==true){
+        					$(this).addClass('rack_art_em1');
+        					$('.rack_art_edit').show();
+        					bool=false;
+        				}else{
+        					$(this).removeClass('rack_art_em1');
+        					$('.rack_art_edit').hide();
+        					bool=true;
+        				}
+        			});
+        			//点击删除
+        			$('#edit_delete').click(function(){
+        				$('#rack_manager').removeClass('rack_art_em1');
+    					$('.rack_art_edit').hide();
+    					bool=true;
+    					$('.novel_list_del').show();
+        			});
+        			//删除事件
+        			$('.novel_list_del').click(function(){
+        				//请求后台删除书架内容,返回后执行下面语句
+        				$(this).parent().remove();
+        				$('.novel_list_del').hide();
+        				if($('.novel_list ul li').length==0){
+        					$('.novel_secnull').show();
+        				}
+        			});
+        		});
+        </script>
+	</body>
+</html>
