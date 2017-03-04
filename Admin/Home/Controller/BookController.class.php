@@ -13,7 +13,23 @@ class BookController extends CommonController
 {
     public function b_list()
     {
-
+        //异步对banner操作处理
+        $validate = strlen(I('post.state')) == 1 && !empty(I('post.id'));
+        if ($validate) {
+            if (!is_numeric(I('post.id'))) {
+                exit('FAIL');
+            }
+            $id = I('post.id');
+            $state = I('post.state');
+            $info = M('Book')->save(['id' => $id, 'book_state' => $state]);
+            if ($info) {
+                exit('SUCCESS');
+            }
+            exit('FAIL');
+        }
+        $bookList = M('Book')->field('id, book_name, number_of_words, is_hot, book_state')->order('id desc')->select();
+        $this->assign('bookList', $bookList);
+        $this->display();
     }
 
     //添加图书
@@ -25,15 +41,18 @@ class BookController extends CommonController
             $isHotValidate = strlen(I('post.is_hot_validate')) == 1 && !empty(I('post.is_hot')) && !empty(I('post.book_synopsis'));
             $bookFileValidate = $_FILES['book_file']['error'] == 0 && $_FILES['book_file']['size'] > 0;
             $bookCoverValidate = $_FILES['book_cover']['error'] == 0 && $_FILES['book_cover']['size'] > 0;
+            $bookBannerValidate = $_FILES['book_banner']['error'] == 0 && $_FILES['book_banner']['size'] > 0;
             //判断数据是否有缺失
-            if ($validate && $isHotValidate && $bookFileValidate && $bookCoverValidate) {
+            if ($validate && $isHotValidate && $bookFileValidate && $bookCoverValidate && $bookBannerValidate) {
                 $txtFileInfo = $this->fileUpload($_FILES['book_file'], true, array('txt'), 'txt/');
                 $imageFileInfo = $this->fileUpload($_FILES['book_cover']);
-                if (!is_array($txtFileInfo) || !is_array($imageFileInfo)) {
+                $bannerFileInfo = $this->fileUpload($_FILES['book_banner']);
+                if (!is_array($txtFileInfo) || !is_array($imageFileInfo) || !is_array($bannerFileInfo)) {
                     $this->returnCode(0, '文件上传失败！');
                 }
                 $bookFile = $txtFileInfo['savepath'].$txtFileInfo['savename'];
                 $bookCover = $imageFileInfo['savepath'].$imageFileInfo['savename'];
+                $bookBanner = $bannerFileInfo['savepath'].$bannerFileInfo['savename'];
                 $isHot = $isHotValidate == 1 ? I('post.is_hot') : 0;    //是否为最火
                 $categoryIds = implode(',', I('post.category_ids'));
                 try {
@@ -42,6 +61,7 @@ class BookController extends CommonController
                         'author_id' => I('post.author_id'),
                         'book_synopsis' => I('post.book_synopsis'),
                         'book_cover' => $bookCover,
+                        'book_banner' => $bookBanner,
                         'category_ids' => $categoryIds,
                         'is_hot' => $isHot,
                         'book_file' => $bookFile,

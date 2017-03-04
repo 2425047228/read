@@ -1,0 +1,77 @@
+<extend name="Base:base"/>
+<block name="title">图书列表</block>
+<block name="body">
+    <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>图书列表</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>书名</th>
+                                <th>字数</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="bookList" id="vo">
+                                <tr>
+                                    <td>{$vo.book_name}</td>
+                                    <td>{$vo.number_of_words}</td>
+                                    <td>
+                                        <switch name="vo['is_hot']">
+                                            <case value="1">最火</case>
+                                            <case value="2">最新</case>
+                                            <case value="3">免费</case>
+                                            <case value="4">更新</case>
+                                            <default/>暂无
+                                        </switch>
+                                    </td>
+                                    <td class="btn_location">
+                                        <!--<button class="btn btn-warning" type="button" onclick="delBtn('{$vo.id}',this)">删除</button>-->
+                                        <button class="btn btn-success" type="button" onclick="up_down('{$vo.id}',this)">
+                                            <eq name="vo['book_state']" value="0">
+                                                未上架
+                                                <else/>
+                                                已上架
+                                            </eq>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </volist>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</block>
+<block name="others">
+    <script>
+        function up_down(id, the) {
+            var state = the.innerText == '未上架' ? 1 : 0;
+            $.post('__SELF__', {'id':id,'state':state}, function (string) {
+                if (string === 'SUCCESS') {
+                    if (state) {
+                        var notice = '已上架';
+                    } else {
+                        var notice = '未上架';
+                    }
+                    the.innerText = notice;
+                } else {
+                    alert('操作失败');
+                }
+            });
+        }
+    </script>
+</block>

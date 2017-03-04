@@ -127,6 +127,13 @@
                                     <span class="help-block m-b-none" id="book_cover">请上传gif,jpg,jpeg,png格式的文件</span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">图书横幅：</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="book_banner" class="form-control" required>
+                                    <span class="help-block m-b-none" id="book_banner">请上传gif,jpg,jpeg,png格式的文件</span>
+                                </div>
+                            </div>
 
                             <div class="progress progress-striped active block_hidden" id="progress_bar_area">
                                 <div style="width: 0%;" aria-valuemax="100" aria-valuemin="0" role="progressbar" class="progress-bar progress-bar-danger" id="progress_bar">

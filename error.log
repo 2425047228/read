@@ -1,0 +1,108 @@
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\phpDE6D.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => glb_v2.png
+            [type] => image/png
+            [tmp_name] => D:\xampp\tmp\phpDF1A.tmp
+            [error] => 0
+            [size] => 19038
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\phpDF1B.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\phpC12F.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => glb_v2.png
+            [type] => image/png
+            [tmp_name] => D:\xampp\tmp\php61A7.tmp
+            [error] => 0
+            [size] => 19038
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => glb_v2.png
+            [type] => image/png
+            [tmp_name] => D:\xampp\tmp\php61B7.tmp
+            [error] => 0
+            [size] => 19038
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\php61D7.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\php6954.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
+Array
+(
+    [upfile] => Array
+        (
+            [name] => call.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\xampp\tmp\php9DB3.tmp
+            [error] => 0
+            [size] => 3993
+        )
+
+)
