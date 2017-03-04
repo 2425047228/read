@@ -14,8 +14,20 @@ class BeautifulwordsController extends CommonController
     //美文列表
     public function w_list()
     {
-        $beautifulWordsList = M('Beautiful_words')
-            ->field('id, title, author, cover, content, url, audio, sent_time')
+        $beautifulWords = M('Beautiful_words');
+        if (!empty(I('post.id')) && is_numeric(I('post.id'))) {
+            $file = $beautifulWords->field('cover, audio')->where(['id' => I('post.id')])->find();
+            //删除文件
+            @unlink($file['cover']);
+            @unlink($file['audio']);
+            $delInfo = $beautifulWords->where(['id'=>I('post.id')])->delete();
+            if ($delInfo) {
+                exit('SUCCESS');
+            }
+            exit('FAIL');
+        }
+        $beautifulWordsList = $beautifulWords
+            ->field('id, title, author, cover, url, sent_time')
             ->order('id desc')
             ->select();
         $this->assign('beautifulWordsList', $beautifulWordsList);
@@ -73,68 +85,9 @@ class BeautifulwordsController extends CommonController
                 return $this->error('添加失败！');
             }
         }
-        $uri = U('w_editor_upload');
-        $this->assign('url', "http://{$_SERVER['HTTP_HOST']}$uri");
+
+        $this->assign('url', C('ARTICLE_STATIC_FILE'));
         $this->display();
     }
-
-    //文章文件上传
-    public function w_editor_upload()
-    {
-        $returnInfo = array(
-            "state" => "没有文件被上传",    //上传状态信息
-            "url" => '',    //返回文件全路径
-            "title" => '',    //新文件名
-            "original" => '',    //原始文件名
-            "type" => '',    //文件类型
-            "size" => 0,    //文件大小
-        );
-        if ($_FILES['upfile']['error'] == 0 && $_FILES['upfile']['size'] > 0) {
-            $fileInfo = $_FILES['upfile'];
-            $upFile = $this->fileUpload($fileInfo);
-            $returnInfo['original'] = $fileInfo['name'];
-            $returnInfo['type'] = $fileInfo['type'];
-            $returnInfo['size'] = $fileInfo['size'];
-            if (!is_array($upFile)) {
-                $returnInfo['state'] = $upFile;
-                exit(json_encode($returnInfo));
-            }
-            $returnInfo['state'] = 'SUCCESS';
-            $returnInfo['url'] = $upFile['savepath'].$upFile['savename'];
-            $returnInfo['title'] = $upFile['savename'];
-            exit(json_encode($returnInfo));
-        }
-            /*return array(
-                "state" => $this->stateInfo,
-                "url" => $this->fullName,
-                "title" => $this->fileName,
-                "original" => $this->oriName,
-                "type" => $this->fileType,
-                "size" => $this->fileSize
-            )*/
-            /*private $stateMap = array( //上传状态映射表，国际化用户需考虑此处数据的国际化
-        "SUCCESS", //上传成功标记，在UEditor中内不可改变，否则flash判断会出错
-        "文件大小超出 upload_max_filesize 限制",
-        "文件大小超出 MAX_FILE_SIZE 限制",
-        "文件未被完整上传",
-        "没有文件被上传",
-        "上传文件为空",
-        "ERROR_TMP_FILE" => "临时文件错误",
-        "ERROR_TMP_FILE_NOT_FOUND" => "找不到临时文件",
-        "ERROR_SIZE_EXCEED" => "文件大小超出网站限制",
-        "ERROR_TYPE_NOT_ALLOWED" => "文件类型不允许",
-        "ERROR_CREATE_DIR" => "目录创建失败",
-        "ERROR_DIR_NOT_WRITEABLE" => "目录没有写权限",
-        "ERROR_FILE_MOVE" => "文件保存时出错",
-        "ERROR_FILE_NOT_FOUND" => "找不到上传文件",
-        "ERROR_WRITE_CONTENT" => "写入文件内容错误",
-        "ERROR_UNKNOWN" => "未知错误",
-        "ERROR_DEAD_LINK" => "链接不可用",
-        "ERROR_HTTP_LINK" => "链接不是http链接",
-        "ERROR_HTTP_CONTENTTYPE" => "链接contentType不正确",
-        "INVALID_URL" => "非法 URL",
-        "INVALID_IP" => "非法 IP"
-    );*/
-
-    }
+    
 }

@@ -86,4 +86,32 @@ class CommonController extends EmptyController
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_exec($ch);
     }
+
+    //文章文件上传
+    public function article_static_upload()
+    {
+        $returnInfo = array(
+            "state" => "没有文件被上传",    //上传状态信息
+            "url" => '',    //返回文件全路径
+            "title" => '',    //新文件名
+            "original" => '',    //原始文件名
+            "type" => '',    //文件类型
+            "size" => 0,    //文件大小
+        );
+        if ($_FILES['upfile']['error'] == 0 && $_FILES['upfile']['size'] > 0) {
+            $fileInfo = $_FILES['upfile'];
+            $upFile = $this->fileUpload($fileInfo);
+            $returnInfo['original'] = $fileInfo['name'];
+            $returnInfo['type'] = $fileInfo['type'];
+            $returnInfo['size'] = $fileInfo['size'];
+            if (!is_array($upFile)) {
+                $returnInfo['state'] = $upFile;
+                exit(json_encode($returnInfo));
+            }
+            $returnInfo['state'] = 'SUCCESS';
+            $returnInfo['url'] = $upFile['savepath'].$upFile['savename'];
+            $returnInfo['title'] = $upFile['savename'];
+            exit(json_encode($returnInfo));
+        }
+    }
 }
