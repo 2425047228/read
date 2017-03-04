@@ -31,7 +31,7 @@
                         <h5>添加作者</h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" action="/admin.php/Home/Author/a_add/message/%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9F%EF%BC%81.html">
+                        <form method="post" class="form-horizontal" action="/admin.php/Home/Author/a_add.html">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">作者姓名：</label>
                                 <div class="col-sm-9">
@@ -63,12 +63,6 @@
 <script src="/Public/Admin/js/jquery.min.js"></script>
 <script src="/Public/Admin/js/bootstrap.min.js"></script>
 
-    <script>
-        window.onload = function () {
-            if ('' != '<?php echo ($_GET['message']); ?>') {
-                alert('<?php echo ($_GET['message']); ?>');
-            }
-        }
-    </script>
+    <!--其他加载的脚本-->
 
 </html>

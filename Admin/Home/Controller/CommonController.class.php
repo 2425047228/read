@@ -29,19 +29,20 @@ class CommonController extends EmptyController
      * @param String $fileName $_FILE文件对应值
      * @param String $uploadType true为单文件上传，false为多文件上传
      * @param Array $fileType 允许上传文件的类型
+     * @param String $branchDirectory 上传文件的分支路径
      * @return 文件上传信息
      */
-    protected function fileUpload($fileName, $uploadType = true, $fileType = array('jpg', 'gif', 'png', 'jpeg'))
+    protected function fileUpload($fileName, $uploadType = true, $fileType = array('jpg', 'gif', 'png', 'jpeg'), $branchDirectory = 'images/')
     {
         $year = date('Y');    //年
         $month = date('m');    //月
         $day = date('d');    //日
-        $savePath = "/Upload/{$year}/{$month}/{$day}/";
+        $savePath = "/Upload/{$branchDirectory}{$year}/{$month}/{$day}/";
         //$savePath = str_replace(DIRECTORY_SEPARATOR, '/', $systemSavePath);
         if (!file_exists($savePath)) {
             $mkInfo = mkdir($savePath, 777, true);
             if (!$mkInfo) {    //创建失败时处理
-                return $this->error("{$savePath}目录创建失败!");
+                return "{$savePath}目录创建失败!";
             }
         }
         $uploader = new Upload();
@@ -58,8 +59,31 @@ class CommonController extends EmptyController
         if ($info) {
             return $info;
         } else {
-            return $this->error($uploader->getError());
+            return $uploader->getError();
         }
 
+    }
+
+    /**
+     * json返回数据码方法
+     * @param Int $code 返回码，1 为成功，其他失败
+     * @param String $msg 返回信息
+     * @return json格式字符串
+     */
+    protected function returnCode($code, $msg)
+    {
+        $jsonArray = array('code' => $code, 'msg' => $msg);
+        exit(json_encode($jsonArray));
+    }
+
+    protected function sendRequest($data = array())
+    {
+
+        $uri = U('Chapter/chapter');
+        $ch = curl_init("http://{$_SERVER['HTTP_HOST']}$uri");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_exec($ch);
     }
 }

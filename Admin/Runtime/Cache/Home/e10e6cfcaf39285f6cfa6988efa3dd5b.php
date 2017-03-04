@@ -47,13 +47,16 @@
                             <thead>
                             <tr>
                                 <th>兴趣</th>
+                                <th>兴趣人数</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if(is_array($hobbyList)): $i = 0; $__LIST__ = $hobbyList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                                     <td><?php echo ($vo["hobby"]); ?></td>
+                                    <td><?php echo ($vo["hobby_personals"]); ?></td>
                                     <td class="btn_location">
+                                        <button class="btn btn-warning" type="button" onclick="delBtn('<?php echo ($vo["id"]); ?>',this)">删除</button>
                                         <button class="btn btn-success" type="button" onclick="location.href='/admin.php/Home/Members/h_update?id=<?php echo ($vo["id"]); ?>';">修改</button>
                                     </td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -71,6 +74,17 @@
 <script src="/Public/Admin/js/bootstrap.min.js"></script>
 
     <script>
+        function delBtn(id, the) {
+            if (confirm('确认删除吗？')) {
+                $.post('/admin.php/Home/Members/hobby.html', {'id':id}, function (string) {
+                    if (string === 'SUCCESS') {
+                        the.parentNode.parentNode.remove();
+                    } else {
+                        alert(string);
+                    }
+                });
+            }
+        }
     </script>
 
 </html>

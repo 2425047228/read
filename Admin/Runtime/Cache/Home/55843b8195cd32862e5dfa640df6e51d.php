@@ -61,19 +61,13 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="<?php echo U('right');?>">上传图书</a>
+                            <a class="J_menuItem" href="<?php echo U('Book/b_list');?>">图书列表</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">图书分类管理</a>
+                            <a class="J_menuItem" href="<?php echo U('Book/b_add');?>">上传图书</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v3.html"></a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="index_v4.html">主页示例四</a>
-                        </li>
-                        <li>
-                            <a href="index_v5.html" target="_blank">主页示例五</a>
+                            <a class="J_menuItem" href="<?php echo U('Category/category');?>">图书分类管理</a>
                         </li>
                     </ul>
 
@@ -94,7 +88,7 @@
                         </ul>
 
                     </li>
-                    <li>
+                   <!-- <li>
                         <a href="#">
                             <i class="fa fa-users"></i>
                             <span class="nav-label">会员管理</span>
@@ -106,7 +100,7 @@
                             </li>
                         </ul>
 
-                    </li>
+                    </li>-->
                     <li>
                         <a href="#">
                             <i class="fa fa-flag-o"></i>

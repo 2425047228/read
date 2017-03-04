@@ -1,0 +1,71 @@
+<extend name="Base:base"/>
+<block name="title">类别管理</block>
+<block name="static">
+    <style>
+        .notice{
+            color: #1AB394;
+            font-weight: bold;
+        }
+        td,th{
+            text-align: center;
+        }
+    </style>
+</block>
+<block name="body">
+    <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>类别列表</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link" href="{:U('c_add')}"><span class="notice">添加类别</span></a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>类别</th>
+                                <th>兴趣人数</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="categoryList" id="vo">
+                                <tr>
+                                    <td>{$vo.category}</td>
+                                    <td>{$vo.category_personals}</td>
+                                    <td class="btn_location">
+                                        <button class="btn btn-warning" type="button" onclick="delBtn('{$vo.id}',this)">删除</button>
+                                        <button class="btn btn-success" type="button" onclick="location.href='__CONTROLLER__/c_update?id={$vo.id}';">修改</button>
+                                    </td>
+                                </tr>
+                            </volist>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</block>
+<block name="others">
+    <script>
+        function delBtn(id, the) {
+            if (confirm('确认删除吗？')) {
+                $.post('__SELF__', {'id':id}, function (string) {
+                    if (string === 'SUCCESS') {
+                        the.parentNode.parentNode.remove();
+                    } else {
+                        alert(string);
+                    }
+                });
+            }
+        }
+    </script>
+</block>

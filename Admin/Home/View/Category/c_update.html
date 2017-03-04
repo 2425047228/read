@@ -1,0 +1,32 @@
+<extend name="Base:base"/>
+<block name="title">banner添加</block>
+<block name="body">
+    <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>类别修改</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" action="__SELF__">
+                            <input type="hidden" name="id" value="{$category.id}">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">类别名称：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="category" class="form-control" placeholder="类别名称" maxlength="10" value="{$category.category}">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary" type="submit">确认修改</button>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</block>

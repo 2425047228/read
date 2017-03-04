@@ -46,8 +46,11 @@ class BannerController extends CommonController
 
     public function b_add()
     {
-        if (!empty($_FILES) && $_FILES['banner']['error'] == 0) {
+        if (!empty($_FILES) && $_FILES['banner']['error'] == 0 && $_FILES['banner']['size'] > 0) {
             $info = $this->fileUpload($_FILES['banner']);
+            if (!is_array($info)) {
+                return $this->error($info);
+            }
             $fileInfo = $info['savepath'].$info['savename'];
             try {
                 $addInfo = M('Banner')->add([
