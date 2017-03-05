@@ -82,13 +82,7 @@ class BookController extends CommonController
                     $this->returnCode(0, '数据格式错误，添加失败！');
                 }
                 M()->commit();
-                ob_end_clean();
-                $returnInfo = $this->returnCode(1, '添加成功！', false);
-                print $returnInfo;
-                header('HTTP/1.1 200 OK');
-                flush();
-                ob_end_flush();    //销毁并输出缓冲内容
-                $this->sendRequest(array('bookId' => $bookInfo, 'bookFile' => $bookFile));
+                $this->returnCode(1, '添加成功！', array('bookId'=>$bookInfo, 'bookFile'=>$bookFile));
 
             }
         }

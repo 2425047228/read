@@ -13,12 +13,12 @@
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/Public/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>style.min.css" rel="stylesheet">
     
-    <link href="/Public/Plugins/css/iCheck/custom.css" rel="stylesheet">
+    <link href="<?php echo C('PLUGINS_CSS');?>iCheck/custom.css" rel="stylesheet">
     <style>
         .radio_inline_block{
             display: inline-block;
@@ -140,6 +140,11 @@
                                     正在上传...<span id="progress">0%</span>
                                 </div>
                             </div>
+                            <div class="form-group block_hidden" id="progress_frame_area">
+                                <div class="col-sm-12">
+                                    <iframe id="progress_frame" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12 col-sm-offset-3">
@@ -155,11 +160,11 @@
     </div>
     </body>
 
-<script src="/Public/Admin/js/jquery.min.js"></script>
-<script src="/Public/Admin/js/bootstrap.min.js"></script>
+<script src="<?php echo C('JS');?>jquery.min.js"></script>
+<script src="<?php echo C('JS');?>bootstrap.min.js"></script>
 
-    <script src="/Public/Plugins/js/iCheck/icheck.min.js"></script>
-    <script src="/Public/Admin/js/AjaxProgressBar.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>iCheck/icheck.min.js"></script>
+    <script src="<?php echo C('JS');?>AjaxProgressBar.js"></script>
     <script>
         $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green"})});
 
@@ -193,9 +198,15 @@
                 if (validateNumber == 0) {
                     return false;
                 }
-                progressBarData('/admin.php/Home/Book/b_add.html', 'post', progressBarShow,evt);
+                progressBarData('/admin.php/Home/Book/b_add.html', 'post', progressBarShow,cutChapter,evt);
             }
 
+            function cutChapter(bookId, bookFile) {
+                var progressFrame = document.getElementById('progress_frame');
+                progressFrame.src = '/admin.php/Home/Chapter/cut_chapter?bookId='+bookId;
+                $('#progress_frame_area').removeClass('block_hidden');
+            }
+            //document.getElementById('btn').onclick = cutChapter;
             //进度条显示方法
             function progressBarShow(evt) {
                 if ($('#progress_bar_area').hasClass('block_hidden')) {

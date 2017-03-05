@@ -13,10 +13,10 @@
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/Public/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>style.min.css" rel="stylesheet">
     
     <style>
         .hidden{
@@ -105,13 +105,13 @@
     </div>
     </body>
 
-<script src="/Public/Admin/js/jquery.min.js"></script>
-<script src="/Public/Admin/js/bootstrap.min.js"></script>
+<script src="<?php echo C('JS');?>jquery.min.js"></script>
+<script src="<?php echo C('JS');?>bootstrap.min.js"></script>
 
     <!--引入编辑器静态文件-->
-    <script type="text/javascript" charset="utf-8" src="/Public/Plugins/js/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/Public/Plugins/js/ueditor/ueditor.all.min.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="/Public/Plugins/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<?php echo C('PLUGINS_JS');?>ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<?php echo C('PLUGINS_JS');?>ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="<?php echo C('PLUGINS_JS');?>ueditor/lang/zh-cn/zh-cn.js"></script>
     <script>
         //创建编辑器
         var ue = UE.getEditor('editor');

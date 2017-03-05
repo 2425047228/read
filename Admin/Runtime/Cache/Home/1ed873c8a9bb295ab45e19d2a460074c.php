@@ -13,12 +13,12 @@
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/Public/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>style.min.css" rel="stylesheet">
     
-    <link href="/Public/Plugins/js/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="<?php echo C('PLUGINS_JS');?>fancybox/jquery.fancybox.css" rel="stylesheet">
     <style>
         .table-hover>thead>tr>th>span{
             font-weight: normal;
@@ -80,10 +80,10 @@
     </div>
     </body>
 
-<script src="/Public/Admin/js/jquery.min.js"></script>
-<script src="/Public/Admin/js/bootstrap.min.js"></script>
+<script src="<?php echo C('JS');?>jquery.min.js"></script>
+<script src="<?php echo C('JS');?>bootstrap.min.js"></script>
 
-    <script src="/Public/Plugins/js/fancybox/jquery.fancybox.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>fancybox/jquery.fancybox.js"></script>
     <script>
         $(document).ready(function(){$(".fancybox").fancybox({openEffect:"none",closeEffect:"none"})});
         function delBtn(id, the) {

@@ -13,10 +13,10 @@
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/Public/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>style.min.css" rel="stylesheet">
     <!--引入静态文件-->
 </head>
 
@@ -31,7 +31,7 @@
                     <!--左侧顶部头像-->
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="/Public/Admin/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="<?php echo C('IMG');?>profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">超级管理员</strong></span>
@@ -444,7 +444,7 @@
                                 <li class="m-t-xs">
                                     <div class="dropdown-messages-box">
                                         <a href="profile.html" class="pull-left">
-                                            <img alt="image" class="img-circle" src="/Public/Admin/img/a7.jpg">
+                                            <img alt="image" class="img-circle" src="<?php echo C('IMG');?>a7.jpg">
                                         </a>
                                         <div class="media-body">
                                             <small class="pull-right">46小时前</small>
@@ -458,7 +458,7 @@
                                 <li>
                                     <div class="dropdown-messages-box">
                                         <a href="profile.html" class="pull-left">
-                                            <img alt="image" class="img-circle" src="/Public/Admin/img/a4.jpg">
+                                            <img alt="image" class="img-circle" src="<?php echo C('IMG');?>a4.jpg">
                                         </a>
                                         <div class="media-body ">
                                             <small class="pull-right text-navy">25小时前</small>
@@ -554,14 +554,14 @@
     </div>
     </body>
 
-<script src="/Public/Admin/js/jquery.min.js"></script>
-<script src="/Public/Admin/js/bootstrap.min.js"></script>
+<script src="<?php echo C('JS');?>jquery.min.js"></script>
+<script src="<?php echo C('JS');?>bootstrap.min.js"></script>
 
-    <script src="/Public/Plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/Public/Plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/Public/Plugins/layer/layer.min.js"></script>
-    <script src="/Public/Admin/js/hplus.min.js"></script>
-    <script src="/Public/Admin/js/contabs.min.js"></script>
-    <script src="/Public/Plugins/pace/pace.min.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>layer/layer.min.js"></script>
+    <script src="<?php echo C('JS');?>hplus.min.js"></script>
+    <script src="<?php echo C('JS');?>contabs.min.js"></script>
+    <script src="<?php echo C('PLUGINS_JS');?>pace/pace.min.js"></script>
 
 </html>

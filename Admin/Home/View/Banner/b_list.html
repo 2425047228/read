@@ -1,7 +1,7 @@
 <extend name="Base:base"/>
 <block name="title">banner列表</block>
 <block name="static">
-    <link href="__PUBLIC__/Plugins/js/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="{:C('PLUGINS_JS')}fancybox/jquery.fancybox.css" rel="stylesheet">
     <style>
         .table-hover>thead>tr>th>span{
             font-weight: normal;
@@ -68,7 +68,7 @@
     </body>
 </block>
 <block name="others">
-    <script src="__PUBLIC__/Plugins/js/fancybox/jquery.fancybox.js"></script>
+    <script src="{:C('PLUGINS_JS')}fancybox/jquery.fancybox.js"></script>
     <script>
         $(document).ready(function(){$(".fancybox").fancybox({openEffect:"none",closeEffect:"none"})});
         function delBtn(id, the) {

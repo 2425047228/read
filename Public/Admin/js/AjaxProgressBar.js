@@ -1,7 +1,7 @@
 /**
  * Created by 帅 on 2017/3/3.
  */
-function progressBarData(url,method,takeOver,evt) {
+function progressBarData(url,method,takeOver,cutChapter,evt) {
     var form = document.getElementsByTagName('form')[0];    //初始化时创建form对象
     var data = new FormData(form);    //声明formdata对象
     var xhr = new XMLHttpRequest();    //声明ajax对象
@@ -13,13 +13,12 @@ function progressBarData(url,method,takeOver,evt) {
                 if (info.code != 1) {
                     alert(info.msg);
                 } else {
-                    alert(info.msg);
-                    location.href = '__CONTROLLER__/b_list';
+                    cutChapter(info.bookId, info.bookFile);
                 }
             }
         }
         if (xhr.readyState == 3) {
-            console.log(xhr.responseText);
+            /*console.log(xhr.responseText);
             if (xhr.responseText != '') {
                 var info = eval('('+xhr.responseText+')');
                 console.log(info);
@@ -29,7 +28,7 @@ function progressBarData(url,method,takeOver,evt) {
                     alert(info.msg);
                     return location.href = '__CONTROLLER__/b_list';
                 }
-            }
+            }*/
         }
     };
     //进度显示

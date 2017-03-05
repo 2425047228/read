@@ -20,7 +20,7 @@ define('APP_DEBUG',True);
 define('PATH_DIR', __DIR__);
 
 // 定义应用目录
-define('APP_PATH','./Admin/');
+define('APP_PATH','./Index/');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

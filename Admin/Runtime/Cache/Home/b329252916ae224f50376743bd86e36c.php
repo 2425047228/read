@@ -9,14 +9,14 @@
     <!--[if lt IE 9]><meta http-equiv="refresh" content="0;ie.html" /><![endif]-->
 
     <title>
-        banner列表
+        作者列表
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/Public/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/Admin/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo C('CSS');?>style.min.css" rel="stylesheet">
     <!--引入静态文件-->
 </head>
 
@@ -57,8 +57,8 @@
     </div>
     </body>
 
-<script src="/Public/Admin/js/jquery.min.js"></script>
-<script src="/Public/Admin/js/bootstrap.min.js"></script>
+<script src="<?php echo C('JS');?>jquery.min.js"></script>
+<script src="<?php echo C('JS');?>bootstrap.min.js"></script>
 
     <script>
         function delBtn(id, the) {

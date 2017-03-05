@@ -13,17 +13,17 @@
     </title>
     <!--公用静态文件-->
     <link rel="shortcut icon" href="favicon.ico">
-    <block name="bootstrap"><link href="__PUBLIC__/Admin/css/bootstrap.min.css" rel="stylesheet"></block>
-    <block name="fonts"><link href="__PUBLIC__/Admin/css/font-awesome.min.css" rel="stylesheet"></block>
-    <block name="animate"><link href="__PUBLIC__/Admin/css/animate.min.css" rel="stylesheet"></block>
-    <block name="style"><link href="__PUBLIC__/Admin/css/style.min.css" rel="stylesheet"></block>
+    <block name="bootstrap"><link href="{:C('CSS')}bootstrap.min.css" rel="stylesheet"></block>
+    <block name="fonts"><link href="{:C('CSS')}font-awesome.min.css" rel="stylesheet"></block>
+    <block name="animate"><link href="{:C('CSS')}animate.min.css" rel="stylesheet"></block>
+    <block name="style"><link href="{:C('CSS')}style.min.css" rel="stylesheet"></block>
     <block name="static"><!--引入静态文件--></block>
 </head>
 <block name="body">
     <body><!--内容主体--></body>
 </block>
-<block name="jquery"><script src="__PUBLIC__/Admin/js/jquery.min.js"></script></block>
-<block name="bootstrapJs"><script src="__PUBLIC__/Admin/js/bootstrap.min.js"></script></block>
+<block name="jquery"><script src="{:C('JS')}jquery.min.js"></script></block>
+<block name="bootstrapJs"><script src="{:C('JS')}bootstrap.min.js"></script></block>
 <block name="others">
     <!--其他加载的脚本-->
 </block>

@@ -69,11 +69,17 @@ class CommonController extends EmptyController
      * @param Int $code 返回码，1 为成功，其他失败
      * @param String $msg 返回信息
      * @param Bool $isPrint 是否直接结束脚本并输出
+     * @param Array $others 其他追加信息
      * @return json格式字符串
      */
-    protected function returnCode($code, $msg, $isPrint = true)
+    protected function returnCode($code, $msg, $others = array(), $isPrint = true)
     {
         $jsonArray = array('code' => $code, 'msg' => $msg);
+        if (!empty($others) && is_array($others)) {
+            foreach ($others as $k => $v){
+                $jsonArray[$k] = $v;
+            }
+        }
         $returnInfo = json_encode($jsonArray);
         if ($isPrint) {
             exit($returnInfo);
@@ -119,5 +125,12 @@ class CommonController extends EmptyController
             $returnInfo['title'] = $upFile['savename'];
             exit(json_encode($returnInfo));
         }
+    }
+
+    //添加数据方法
+    protected function addData($source, $data = array())
+    {
+        $chapterInfo = $source->add($data);
+        return $chapterInfo;
     }
 }
