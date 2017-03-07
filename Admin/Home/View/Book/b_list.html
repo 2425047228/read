@@ -35,7 +35,7 @@
                                         </switch>
                                     </td>
                                     <td class="btn_location">
-                                        <!--<button class="btn btn-warning" type="button" onclick="delBtn('{$vo.id}',this)">删除</button>-->
+                                        <button class="btn btn-warning" type="button" onclick="location.href='__CONTROLLER__/b_update?id={$vo.id}';">修改</button>
                                         <button class="btn btn-success" type="button" onclick="up_down('{$vo.id}',this)">
                                             <eq name="vo['book_state']" value="0">
                                                 未上架

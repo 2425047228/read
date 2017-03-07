@@ -13,8 +13,10 @@ function progressBarData(url,method,takeOver,cutChapter,evt) {
                 if (info.code != 1) {
                     alert(info.msg);
                 } else {
-                    cutChapter(info.bookId, info.bookFile);
+                    cutChapter(info.bookId);
                 }
+            } else {
+                alert('缺少数据！');
             }
         }
         if (xhr.readyState == 3) {

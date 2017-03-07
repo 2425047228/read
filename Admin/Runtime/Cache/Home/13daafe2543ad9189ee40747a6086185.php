@@ -51,7 +51,7 @@
                                             <?php default: ?>暂无<?php endswitch;?>
                                     </td>
                                     <td class="btn_location">
-                                        <!--<button class="btn btn-warning" type="button" onclick="delBtn('<?php echo ($vo["id"]); ?>',this)">删除</button>-->
+                                        <button class="btn btn-warning" type="button" onclick="location.href='/admin.php/Home/Book/b_update?id=<?php echo ($vo["id"]); ?>';">修改</button>
                                         <button class="btn btn-success" type="button" onclick="up_down('<?php echo ($vo["id"]); ?>',this)">
                                             <?php if(($vo['book_state']) == "0"): ?>未上架
                                                 <?php else: ?>

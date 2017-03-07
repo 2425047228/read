@@ -26,7 +26,7 @@ class BannerController extends CommonController
             $bannerObject = M('Banner');
             if ($type == 'del') {    //判断删除
                 $filePath = $bannerObject->where(['id' => $id])->getField('banner_file');
-                @unlink($filePath);
+                @unlink(PATH_DIR.$filePath);
                 $info = $bannerObject->where(['id' => $id])->delete();
             } elseif ($type == 'up_down') {    //判断修改状态
                 $info = $bannerObject->where(['id' => $id])->save(['banner_state' => $state]);

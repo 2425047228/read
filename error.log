@@ -1,108 +1,192 @@
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\phpDE6D.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => glb_v2.png
-            [type] => image/png
-            [tmp_name] => D:\xampp\tmp\phpDF1A.tmp
-            [error] => 0
-            [size] => 19038
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\phpDF1B.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\phpC12F.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => glb_v2.png
-            [type] => image/png
-            [tmp_name] => D:\xampp\tmp\php61A7.tmp
-            [error] => 0
-            [size] => 19038
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => glb_v2.png
-            [type] => image/png
-            [tmp_name] => D:\xampp\tmp\php61B7.tmp
-            [error] => 0
-            [size] => 19038
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\php61D7.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\php6954.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
         )
 
 )
 Array
 (
-    [upfile] => Array
+    [0] => Array
         (
-            [name] => call.jpg
-            [type] => image/jpeg
-            [tmp_name] => D:\xampp\tmp\php9DB3.tmp
-            [error] => 0
-            [size] => 3993
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 玄幻仙侠
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 轻松幽默
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 古装宫斗
+        )
+
+    [2] => Array
+        (
+            [category] => 玄学风水
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 古装宫斗
+        )
+
+    [2] => Array
+        (
+            [category] => 玄学风水
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 轻松幽默
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [category] => 流行小说
+        )
+
+    [1] => Array
+        (
+            [category] => 轻松幽默
         )
 
 )

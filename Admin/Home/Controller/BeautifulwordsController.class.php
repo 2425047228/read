@@ -15,11 +15,12 @@ class BeautifulwordsController extends CommonController
     public function w_list()
     {
         $beautifulWords = M('Beautiful_words');
+        //美文删除
         if (!empty(I('post.id')) && is_numeric(I('post.id'))) {
             $file = $beautifulWords->field('cover, audio')->where(['id' => I('post.id')])->find();
             //删除文件
-            @unlink($file['cover']);
-            @unlink($file['audio']);
+            @unlink(PATH_DIR.$file['cover']);
+            @unlink(PATH_DIR.$file['audio']);
             $delInfo = $beautifulWords->where(['id'=>I('post.id')])->delete();
             if ($delInfo) {
                 exit('SUCCESS');
