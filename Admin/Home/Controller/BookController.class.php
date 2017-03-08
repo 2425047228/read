@@ -38,7 +38,7 @@ class BookController extends CommonController
         //添加请求
         if (IS_POST) {
             $validate = !empty(I('post.book_name')) && !empty(I('post.author_id')) && !empty(I('post.number_of_words')) && !empty(I('post.category_ids'));
-            $isHotValidate = strlen(I('post.is_hot_validate')) == 1 && !empty(I('post.is_hot')) && !empty(I('post.book_synopsis'));
+            $isHotValidate = strlen(I('post.is_hot_validate')) == 1 && !empty(I('post.book_synopsis'));
             $bookFileValidate = $_FILES['book_file']['error'] == 0 && $_FILES['book_file']['size'] > 0;
             $bookCoverValidate = $_FILES['book_cover']['error'] == 0 && $_FILES['book_cover']['size'] > 0;
             $bookBannerValidate = $_FILES['book_banner']['error'] == 0 && $_FILES['book_banner']['size'] > 0;
@@ -47,8 +47,14 @@ class BookController extends CommonController
                 $txtFileInfo = $this->fileUpload($_FILES['book_file'], true, array('txt'), 'txt/');
                 $imageFileInfo = $this->fileUpload($_FILES['book_cover']);
                 $bannerFileInfo = $this->fileUpload($_FILES['book_banner']);
-                if (!is_array($txtFileInfo) || !is_array($imageFileInfo) || !is_array($bannerFileInfo)) {
-                    $this->returnCode(0, '文件上传失败！');
+                if (!is_array($txtFileInfo)) {
+                    $this->returnCode(0, $txtFileInfo);
+                }
+                if (!is_array($imageFileInfo)) {
+                    $this->returnCode(0, $imageFileInfo);
+                }
+                if (!is_array($bannerFileInfo)) {
+                    $this->returnCode(0, $bannerFileInfo);
                 }
                 $bookFile = $txtFileInfo['savepath'].$txtFileInfo['savename'];
                 $bookCover = $imageFileInfo['savepath'].$imageFileInfo['savename'];
@@ -107,7 +113,7 @@ class BookController extends CommonController
     {
         if (IS_POST) {
             $validate = !empty(I('post.id')) && !empty(I('post.book_name')) && !empty(I('post.author_id')) && !empty(I('post.number_of_words')) && !empty(I('post.category_ids'));
-            $isHotValidate = strlen(I('post.is_hot_validate')) == 1 && !empty(I('post.is_hot')) && !empty(I('post.book_synopsis'));
+            $isHotValidate = strlen(I('post.is_hot_validate')) == 1 && !empty(I('post.book_synopsis'));
             $bookCoverValidate = $_FILES['book_cover']['error'] == 0 && $_FILES['book_cover']['size'] > 0;
             $bookBannerValidate = $_FILES['book_banner']['error'] == 0 && $_FILES['book_banner']['size'] > 0;
             //判断数据是否有缺失
@@ -126,7 +132,7 @@ class BookController extends CommonController
                 if ($bookCoverValidate) {
                     $imageFileInfo = $this->fileUpload($_FILES['book_cover']);
                     if (!is_array($imageFileInfo)) {
-                        $this->returnCode(0, '文件上传失败！');
+                        $this->returnCode(0, $imageFileInfo);
                     }
                     $addData['book_cover'] = $imageFileInfo['savepath'].$imageFileInfo['savename'];
                     $oldCover = M('Book')->where(['id'=>I('post.id')])->getField('book_cover');
@@ -134,7 +140,7 @@ class BookController extends CommonController
                 if ($bookBannerValidate) {
                     $bannerFileInfo = $this->fileUpload($_FILES['book_banner']);
                     if (!is_array($bannerFileInfo)) {
-                        $this->returnCode(0, '文件上传失败！');
+                        $this->returnCode(0, $bannerFileInfo);
                     }
                     $addData['book_banner'] = $bannerFileInfo['savepath'].$bannerFileInfo['savename'];
                     $oldBanner = M('Book')->where(['id'=>I('post.id')])->getField('book_banner');

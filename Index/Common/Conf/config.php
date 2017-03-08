@@ -5,8 +5,8 @@ return array(
     'JS' => '/Public/Index/js/',
     'CSS' => '/Public/Index/css/',
     'IMG' => '/Public/Index/images/',
-
-
+    'COOKIE_TIME' => (3600*24*360),
+    
     'DB_TYPE' => 'mysql',     // 数据库类型
     'DB_HOST' => '127.0.0.1', // 服务器地址
     'DB_NAME' => 'read',          // 数据库名

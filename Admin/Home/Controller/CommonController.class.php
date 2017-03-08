@@ -39,8 +39,9 @@ class CommonController extends EmptyController
         $day = date('d');    //日
         $savePath = "/Upload/{$branchDirectory}{$year}/{$month}/{$day}/";
         //$savePath = str_replace(DIRECTORY_SEPARATOR, '/', $systemSavePath);
-        if (!file_exists($savePath)) {
-            $mkInfo = mkdir($savePath, 777, true);
+        $directory = PATH_DIR.$savePath;
+        if (!file_exists($directory)) {
+            $mkInfo = mkdir($directory, 0777, true);
             if (!$mkInfo) {    //创建失败时处理
                 return "{$savePath}目录创建失败!";
             }

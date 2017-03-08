@@ -21,6 +21,8 @@ define('PATH_DIR', __DIR__);
 
 // 定义应用目录
 define('APP_PATH','./Index/');
+define('APPID','wxa2b618fb1705e8bb');
+define('APPSECRET','fef1efac8c6f3ba12a4e9f972faebb23');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

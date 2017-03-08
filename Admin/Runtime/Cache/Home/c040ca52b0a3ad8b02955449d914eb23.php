@@ -201,7 +201,7 @@
                 progressBarData('/admin.php/Home/Book/b_add.html', 'post', progressBarShow,cutChapter,evt);
             }
 
-            function cutChapter(bookId, bookFile) {
+            function cutChapter(bookId) {
                 var progressFrame = document.getElementById('progress_frame');
                 progressFrame.src = '/admin.php/Home/Chapter/cut_chapter?bookId='+bookId;
                 $('#progress_frame_area').removeClass('block_hidden');

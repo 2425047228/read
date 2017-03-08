@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>书籍详情</title>
+    <title><?php echo ($bookInfo["book_name"]); ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" name="viewport" />
     <link rel="stylesheet" type="text/css" href="<?php echo C('CSS');?>common.css"/>
     <script src="<?php echo C('JS');?>common.js" type="text/javascript" charset="utf-8"></script>
@@ -14,6 +14,7 @@
 	<header class="read_head">
 		<a href="<?php echo (cookie('goBack')); ?>"><em class="read_head_em color_zhu">返回</em><span><?php echo ($bookInfo["book_name"]); ?></span></a>
 	</header>
+	<input type="hidden" id="book_id" value="<?php echo ($bookId); ?>">
 	<article class="read_art">
 		<p class="read_art_word"><?php echo ($chapterInfo["chapter_content"]); ?></p>
 		<div>
@@ -70,7 +71,8 @@
 				document.body.removeEventListener('touchmove', event_f, false);
 				$('#bookback_firstalert').hide();
 				$('#read_set1').show();
-				$.post('/index.php/Home/Book/b_read/b_id/4.html',{'isFirst':'isFirst'}, function (string) {console.log(string)});
+				//$.post("<?php echo U('setting');?>",{'isFirst':'isFirst'}, function (string) {console.log(string)});
+				setting({'isFirst':'isFirst'});
 				bool=false;
 			});
 
@@ -101,6 +103,10 @@
 
 			//加入书架
 			var add_bookrack=false;
+			if ('<?php echo ($isExistsBookshelf); ?>' != '') {
+				add_bookrack=true;
+				$('#read_bookrack').text('已加入书架');
+			}
 			$('#read_bookrack').click(function(){
 				if(add_bookrack==true){
 					return false;
@@ -111,29 +117,61 @@
 				var scroll_top=document.body.scrollTop;//网页被卷去的高
 				var toph=7*w/15+scroll_top;
 				add_bookrack=true;
+				$(this).text('已加入书架');
+				setting({'bookId':$('#book_id').val()});
 				div.css({'display':'block','top':toph});
 				document.body.addEventListener('touchmove', event_f, false); //禁止页面滚动
 				setTimeout('alertnone()',1000);
 			});
 
 			//字号调整
-			$('.read_sets2_p1 em').click(function(){
-				var $this=$(this);
-				var size=$this.attr('value');
+			$('.read_sets2_p1 em').click(setFontSize);
+
+			//背景调整
+			$('.read_sets2_p2 em').click(setBackgroundColor);
+
+			function setBackgroundColor(){
+				if (arguments.length > 0 && typeof(arguments[0]) != "object") {
+					var color = arguments[0];
+					var $this = $('em[value="'+color+'"]');
+				} else {    //用户主动设置
+					var $this=$(this);
+					var color=$this.attr('value');
+					setting({'backgroundColor':color});
+				}
+
+				$this.addClass('read_sets2_p2_emchange').siblings('.read_sets2_p2 em').removeClass('read_sets2_p2_emchange');
+				$('#read_body').css('background',color);
+				$('#read_body').css('background-size','contain');
+			}
+
+			function setFontSize(){
+				if (arguments.length > 0 && typeof(arguments[0]) != "object") {
+					var size = arguments[0];
+					var $this = $('em[value="'+size+'"]');
+				} else {    //用户主动设置
+					var $this=$(this);
+					var size=$this.attr('value');
+					setting({'fontSize':size});
+				}
 				var h=parseInt(size)+20;
 				$this.addClass('read_sets2_p1_em1').siblings('.read_sets2_p1 em').removeClass('read_sets2_p1_em1');
 				$('.read_art_word').css('font-size',size/75+'rem');
 				$('.read_art_word').css('line-height',h/75+'rem');
-			});
+			}
 
-			//背景调整
-			$('.read_sets2_p2 em').click(function(){
-				var $this=$(this);
-				var color=$this.attr('value');
-				$this.addClass('read_sets2_p2_emchange').siblings('.read_sets2_p2 em').removeClass('read_sets2_p2_emchange');
-				$('#read_body').css('background',color);
-				$('#read_body').css('background-size','contain');
-			});
+			function setting(setInfo) {
+				$.post("<?php echo U('setting');?>",setInfo, function (string) {console.log(string)});
+			}
+			if ('<?php echo (cookie('fontSize')); ?>' != '') {
+				setFontSize('<?php echo (cookie('fontSize')); ?>');
+
+			}
+			if ('<?php echo (cookie('backgroundColor')); ?>' != '') {
+				setBackgroundColor('<?php echo (cookie('backgroundColor')); ?>');
+			}
+
+
 		});
 	</script>
 

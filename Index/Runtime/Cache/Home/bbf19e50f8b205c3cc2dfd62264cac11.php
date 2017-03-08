@@ -48,6 +48,7 @@
 			<a href="#" class="detail_head_bottom_a2 novel_right" id="add_bookrack">加入书架</a>
 		</div>
 	</header>
+	<input type="hidden" id="book_id" value="<?php echo ($bookInfo['id']); ?>">
 	<article class="detail_art">
 		<nav>
 			<ul id="detail_nav">
@@ -86,12 +87,16 @@
 				$('.detail_sec').eq(itemIndex).show().siblings('.detail_sec').hide();
 			});
 			//加入书架
+			if ('<?php echo ($isExistsBookshelf); ?>' != '') {    //判断是否已在书架
+				$('#add_bookrack').text('已加入书架');
+			}
 			$('#add_bookrack').click(function(){
 				if($('#add_bookrack').text()=="已加入书架"){
 					return false;
 				}
 				var x=$('#bookback_alert');
 				//请求加入书架,下方为请求成功后再执行
+				$.post("<?php echo U('setting');?>",{'bookId':$('#book_id').val()}, function (string) {console.log(string)});
 				x.css('display','block');
 				$('#add_bookrack').text('已加入书架');
 				setTimeout(function alertnone(){x.css("display","none");},2000);

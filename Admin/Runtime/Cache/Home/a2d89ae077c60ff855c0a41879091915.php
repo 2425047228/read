@@ -40,7 +40,7 @@
                         <h5>修改图书信息</h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" enctype="multipart/form-data" action="/admin.php/Home/Book/b_update?id=16" id="book_info">
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data" action="/admin.php/Home/Book/b_update?id=11" id="book_info">
                             <input type="hidden" name="id" value="<?php echo ($_GET['id']); ?>">
                             <div class="form-group">
                                     <label class="col-sm-3 control-label">书籍名称：</label>
@@ -197,7 +197,7 @@
                 if (validateNumber == 0) {
                     return false;
                 }
-                progressBarData('/admin.php/Home/Book/b_update?id=16', 'post', progressBarShow,cutChapter,evt);
+                progressBarData('/admin.php/Home/Book/b_update?id=11', 'post', progressBarShow,cutChapter,evt);
             }
 
             function cutChapter(bookId) {
