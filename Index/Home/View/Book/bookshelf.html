@@ -1,0 +1,112 @@
+<extend name="Base:base" />
+<block name="title">书架</block>
+<block name="static">
+</block>
+<block name="body">
+	<body class="rack_body">
+	<notempty name="recordBookInfo">
+		<header class="rack_head">
+			<h3>足迹</h3>
+			<a href="{:U('b_read',['b_id'=>$recordBookInfo['id']])}">
+				<div class="rack_head_top">
+					<div class="rack_head_top_left">
+						<img src="{$recordBookInfo.book_banner}" alt=""/>
+					</div>
+					<div class="rack_head_top_right">
+						<h4>{$recordBookInfo.book_name}</h4>
+						<p class="color_hui">作者：<em>{$recordBookInfo.author}</em></p>
+						<p class="color_hui">阅读时间：<em>{$Think.cookie.readRecordTime|date='Y.m.d',###}</em></p>
+					</div>
+				</div>
+			</a>
+		</header>
+	</notempty>
+
+	<article class="rack_art">
+		<h3>我的书架<em class="color_zhu" id="rack_manager">管理</em></h3>
+		<div class="rack_art_edit"><a href="{:U('library')}" class="color_black">增加</a><a href="javascript:;" class="color_black" id="edit_delete">删除</a></div>
+		<!--书架有内容显示内容-->
+		<section class="novel_list">
+				<ul>
+					<volist name="bookshelf" id="vo">
+						<li class="novel_list_litop">
+							<a href="{:U('b_read',['b_id'=>$vo['id']])}">
+								<div class="index_img">
+									<img src="{$vo.book_banner}" class="index_img_cover"/>
+									<switch name="vo['is_hot']">
+										<case value="1"><img src="{:C('IMG')}hot.png" class="index_img_mark"/></case>
+										<case value="2"><img src="{:C('IMG')}new.png" class="index_img_mark"/></case>
+										<case value="3"><img src="{:C('IMG')}gratis.png" class="index_img_mark"/></case>
+										<case value="4"><img src="{:C('IMG')}updating.png" class="index_img_mark"/></case>
+									</switch>
+								</div>
+								<div class="index_mes"><h5 class="color_black">{$vo.book_name}</h5><p>作者：<em>{$vo.author}</em></p><p><em>{$vo.readed_number}人已读</em><span>{$vo.number_of_words}字</span></p></div>
+							</a>
+							<em class="novel_list_del" data-id="{$vo.id}"></em>
+						</li>
+					</volist>
+
+				</ul>
+			</section>
+		<!--书架无内容是显示-->
+		<section class="novel_secnull">暂无相关数据</section>
+	</article>
+	<footer>
+		<ul class="novel_btn">
+			<li class="novel_btn1"><a href="{:U('Index/index')}" class="color_hui"><em class="novel_btn_false"></em>首页</a></li>
+			<li class="novel_btn2"><a href="{:U('library')}" class="color_hui"><em class="novel_btn_false"></em>书城</a></li>
+			<li class="novel_btn3"><a href="{:U('BeautifulWords/beautifulwords')}" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
+			<li class="novel_btn4"><a href="javascript:void(0);" class="color_zhu"><em class="novel_btn_true"></em>书架</a></li>
+			<li class="novel_btn5"><a href="{:U('User/me')}" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
+		</ul>
+	</footer>
+	</body>
+</block>
+<block name="others">
+	<script type="text/javascript">
+		$(function(){
+			var bool=true;
+			//点击管理
+			$('#rack_manager').click(function(){
+				if(bool==true){
+					$(this).addClass('rack_art_em1');
+					$('.rack_art_edit').show();
+					bool=false;
+				}else{
+					$(this).removeClass('rack_art_em1');
+					$('.rack_art_edit').hide();
+					bool=true;
+				}
+			});
+			//点击删除
+			$('#edit_delete').click(function(){
+				if ($(this).text() == '删除') {
+					$(this).text('取消');
+					$('.novel_list_del').show();
+				} else {
+					$(this).text('删除');
+					$('.novel_list_del').hide();
+				}
+				bool = true;
+				$('#rack_manager').removeClass('rack_art_em1');
+				$('.rack_art_edit').hide();
+			});
+			//删除事件
+			$('.novel_list_del').click(function(){
+				//请求后台删除书架内容,返回后执行下面语句
+				if (confirm('您是否确定移出书架？')) {
+					$.post('__SELF__', {'id':$(this).attr('data-id')},function (string) {console.log(string)});
+					$(this).parent().remove();
+					//$('.novel_list_del').hide();
+					if($('.novel_list ul li').length==0){
+						$('.novel_secnull').show();
+					}
+				}
+			});
+			if($('.novel_list ul li').length==0){
+				$('.novel_secnull').show();
+			}
+		});
+	</script>
+</block>
+

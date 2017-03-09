@@ -58,7 +58,7 @@ class BeautifulwordsController extends CommonController
                 $data['title'] = I('post.title');
                 $data['author'] = I('post.author');
                 $data['editor_way'] = I('post.editor_way');
-                $data['content'] = htmlspecialchars(I('post.content'));
+                $data['content'] = I('post.content');
                 $data['url'] = I('post.url');
                 $data['sent_time'] = time();
                 $cover = $this->fileUpload($_FILES['cover']);

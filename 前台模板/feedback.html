@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>反馈</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+		$(document).ready(function() {	
+			$("#feedback_input").focus(function(){
+            		$("#feedback_input").bind('input propertychange', function(){
+                    words_deal();
+               }); 
+            });
+			function words_deal(){
+	            var content_len = $("#feedback_input").val().length;
+	
+	            // 当用户输入的字数大于制定的数时，将被截断
+	            // 判断输入是否大于50
+	            if(content_len>50)
+	            {
+	                var num=$("#feedback_input").val().substr(0,50);
+	                $("#feedback_input").val(num);
+	            }
+	            else
+	            {
+	                $("#div_wordCount").text($("#feedback_input").val().length+'/50');
+	            }
+	       }
+		});
+	</script>
+
+  </head>
+  
+  <body>
+	<form class="feedback_form">
+		<textarea placeholder="请输入您的意见或者建议，我们会认真对待每一份反馈，持续改进，以获得您的认可。" id="feedback_input"></textarea>
+		<div id="div_wordCount">0/50</div>
+	</form>
+	<div class="novel_foot">
+		<a href="#" id="novel_out">提交</a>
+	</div>
+  </body>
+</html>

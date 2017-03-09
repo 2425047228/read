@@ -33,7 +33,7 @@
 					<a href="<?php echo U('b_read',['b_id'=>$bookId,'chapter'=>($chapterInfo['chapter_sort']+1)]);?>"><em class="read_sets1_em2">下一章</em></a>
 				</p>
 				<ul>
-					<a href="#"><li class="read_sets1_li1">目录</li></a>
+					<a href="<?php echo U('catalogue',['b_id'=>$bookId]);?>"><li class="read_sets1_li1">目录</li></a>
 					<li class="read_sets1_li2" id="read_fontsize">字体大小</li>
 					<li class="read_sets1_li3" id="read_bookrack">加入书架</li>
 				</ul>
@@ -65,16 +65,15 @@
 				$('#bookback_firstalert').hide();
 			} else {
 				$('#bookback_firstalert').show();
+				document.body.addEventListener('touchmove', event_f, false); //禁止页面滚动
+				$('#bookback_firstalert').click(function(){
+					document.body.removeEventListener('touchmove', event_f, false);
+					$('#bookback_firstalert').hide();
+					$('#read_set1').show();
+					setting({'isFirst':'isFirst'});
+					bool=false;
+				});
 			}
-			document.body.addEventListener('touchmove', event_f, false); //禁止页面滚动
-			$('#bookback_firstalert').click(function(){
-				document.body.removeEventListener('touchmove', event_f, false);
-				$('#bookback_firstalert').hide();
-				$('#read_set1').show();
-				//$.post("<?php echo U('setting');?>",{'isFirst':'isFirst'}, function (string) {console.log(string)});
-				setting({'isFirst':'isFirst'});
-				bool=false;
-			});
 
 			//下一章
 			$('#read_next').click(function(e){

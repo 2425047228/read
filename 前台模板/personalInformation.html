@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人信息</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/smh_alert.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/smh_alert.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form class="person_form">
+			<p>
+				<label for="person_name">昵称</label>
+				<input type="text" value="史沐卉" id="person_name"/>
+			</p>
+			<p>
+				<label>性别</label>
+				<span class="person_sex"><em></em>男</span>
+				<span class="person_sex"><em class="person_em1"></em>女</span>
+			</p>
+			<p class="person_form_pend">
+				<label>手机</label>
+				<em>绑定</em>
+			</p>
+			<div class="preson_form_div">
+				<h6>兴趣<em>（可最多选择5个）</em></h6>
+				<ul class="preson_form_like">
+					<li>流行小说</li>
+					<li>儿童教育</li>
+					<li>心理学</li>
+					<li>都市言情</li>
+					<li>青春校园</li>
+					<li>轻松幽默</li>
+					<li>古装宫斗</li>
+					<li>历史军事</li>
+					<li>人物传记</li>
+					<li>悬疑推理</li>
+					<li>玄幻仙侠</li>
+					<li>动漫漫画</li>
+					<li>玄学风水</li>
+					<li>游戏竞技</li>
+					
+				</ul>
+			</div>
+			<div class="novel_foot">
+				<a href="#" id="novel_out">保存</a>
+			</div>
+		</form>
+		<div class="person_alert">
+			<div class="person_alert_meng"></div>
+			<form action="" id="person_alert_form">
+				<p>
+					<label for="person_alert_phone">手机号：</label>
+					<input type="text" id="person_alert_phone" smh_required="请输入手机号" smh_phone="您输入的信息有误"/>
+				</p>
+				<p>
+					<label for="person_alert_yzm">验证码：</label>
+					<input type="text" id="person_alert_yzm" smh_number="您输入的验证码有误" smh_num_code=4 smh_num_code_message="您输入的验证码有误"/>
+					<em id="person_alert_yzmbutton">验证码</em>
+				</p>
+				<div>
+					<em class="person_alert_bottonl">取消</em>
+					<em class="person_alert_bottonr color_zhu">确定</em>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				//性别
+				$('.person_sex').click(function(){
+					$('.person_sex em').removeClass('person_em1');
+					$(this).find('em').addClass('person_em1');
+				});
+				
+				//兴趣
+				$('.preson_form_like li').click(function(){
+					if($(this).hasClass('preson_form_li1')){
+						$(this).removeClass('preson_form_li1');
+					}else if($('.preson_form_li1').length>=5){
+						return false;
+					}else{
+						$(this).addClass('preson_form_li1');
+					}
+				});
+				
+				//绑定手机
+				$('.person_form_pend').click(function(){
+					$('.person_alert').show();
+				});
+				$('.person_alert_meng').click(function(e){
+					$('.person_alert').hide();
+				});
+				
+				//验证码
+				var InterValObj; //timer变量，控制时间
+				var count = 60; //间隔函数，1秒执行
+				var curCount;//当前剩余秒数
+				var yzm_button=$('#person_alert_yzmbutton');
+				yzm_button.click(function(){
+					$('#person_alert_yzm').val();
+					if($(this).text()!="验证码"){
+						return false;
+					}
+					var y=required()&&sphone();
+					if(y==true){
+						curCount = count;
+					　　//设置button效果，开始计时
+					  	yzm_button.text(curCount + "s");
+					  	InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+					}else{
+						return false;
+					}
+				});
+				
+				//timer处理函数
+				function SetRemainTime() {
+			        if (curCount == 0) {                
+			            window.clearInterval(InterValObj);//停止计时器
+			            yzm_button.text("验证码");
+			        }
+			        else {
+			            curCount--;
+			            yzm_button.text(curCount + "s");
+			        }
+		        }
+				
+				//确定
+				$('.person_alert_bottonr').click(function(){
+					var state=smh_alert(); //验证函数
+					if($('#person_alert_yzm').val().length==0){
+						alertmessage('请输入验证码');
+						return false;
+					}
+					if(state==true){
+						console.log("验证成功");
+						//请求后台判断验证码是否正确
+						//正确
+						var str=$('#person_alert_phone').val();
+						$('.person_form_pend em').text(str);
+						$('.person_alert').hide();
+						//不正确alertmessage("您输入的验证码有误");
+						
+					}
+				});
+				//取消
+				$('.person_alert_bottonl').click(function(){
+					$('#person_alert_phone').val('');
+					$('#person_alert_yzm').val('');
+					clearInterval(InterValObj);
+					$('#person_alert_yzmbutton').text("验证码");
+					$('.person_alert').hide();
+				});
+			});
+		</script>
+	</body>
+</html>

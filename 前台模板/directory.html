@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>目录</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/dropload.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.dropload-up,.dropload-down{
+			    position: relative;
+			    height: 0;
+			    bottom:0;
+			    overflow: hidden;
+			    font-size: 0.4rem;
+			    /* 开启硬件加速 */
+			    -webkit-transform:translateZ(0);
+			    transform:translateZ(0);
+			}
+			.dropload-down{
+			    height: 1.2rem;
+			}
+			.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
+			    height: 1.2rem;
+			    line-height: 1.2rem;
+			    text-align: center;
+			    color: rgb(153,153,153);
+			}
+		</style>
+	</head>
+	<body class="">
+		<article class="dir_art">
+			<h4>小说名</h4>
+			<ul>
+				<a href="#"><li>第一章第一章第一章第一章第一章第一章第一章第一章第一章第一章第一章</li></a>
+				<ol>
+					<a href="#"><li>小标题第一章第一章第一章第一章第一章第一章第一章第一章第一章第一章第一章</li></a>
+					<a href="#"><li>小标题</li></a>
+					<a href="#"><li>小标题</li></a>
+					<a href="#"><li>小标题</li></a>
+				</ol>
+				<a href="#"><li>第一章</li></a>
+				<ol>
+					<a href="#"><li>小标题</li></a>
+					<a href="#"><li>小标题</li></a>
+					<a href="#"><li>小标题</li></a>
+					<a href="#"><li>小标题</li></a>
+				</ol>
+			</ul>
+		</article>
+        
+        <script src="js/dropload.min.js"></script>
+		<script>
+		$(function(){
+		    var itemIndex = 0;
+		    var bool=[false,false,false,false];
+		
+		
+		    // dropload
+		    var dropload = $('.dir_art').dropload({
+		        scrollArea : window,
+		        domDown : {
+		            domClass   : 'dropload-down',
+		            domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+		            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
+		            domNoData  : '<div class="dropload-noData">到底啦</div>'
+		        },
+		        loadDownFn : function(me){
+		        		
+		        		var result = '';
+                    for(var i = 0; i < 4; i++){
+                        result +='<a href="#"><li>第一章</li></a><ol><a href="#"><li>小标题</li></a><a href="#"><li>小标题</li></a><a href="#"><li>小标题</li></a><a href="#"><li>小标题</li></a></ol>';
+                        if(i== 2){
+                            // 数据加载完
+                            bool[itemIndex] = true;
+                            console.log(bool);
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    // 为了测试，延迟1秒加载
+                    setTimeout(function(){
+                        $('.dir_art ul').append(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },1000);
+		        		
+		        }
+		    });
+		});
+		</script>
+	</body>
+</html>

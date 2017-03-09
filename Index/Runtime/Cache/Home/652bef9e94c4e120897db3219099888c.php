@@ -45,8 +45,8 @@
 			<li class="novel_btn1"><a href="<?php echo U('Index/index');?>" class="color_hui"><em class="novel_btn_false"></em>首页</a></li>
 			<li class="novel_btn2"><a href="javascript:void(0);" class="color_zhu"><em class="novel_btn_true"></em>书城</a></li>
 			<li class="novel_btn3"><a href="#" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
-			<li class="novel_btn4"><a href="#" class="color_hui"><em class="novel_btn_false"></em>书架</a></li>
-			<li class="novel_btn5"><a href="#" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
+			<li class="novel_btn4"><a href="<?php echo U('bookshelf');?>" class="color_hui"><em class="novel_btn_false"></em>书架</a></li>
+			<li class="novel_btn5"><a href="<?php echo U('User/me');?>" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
 		</ul>
 	</footer>
 
