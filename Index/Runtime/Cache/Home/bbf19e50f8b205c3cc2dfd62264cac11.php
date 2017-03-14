@@ -47,6 +47,7 @@
 			<!--加入书架/已加入书架-->
 			<a href="#" class="detail_head_bottom_a2 novel_right" id="add_bookrack">加入书架</a>
 		</div>
+		<a href="<?php echo U('catalogue',['b_id'=>$bookInfo['id']]);?>" class="detail_head_middle">目录</a>
 	</header>
 	<input type="hidden" id="book_id" value="<?php echo ($bookInfo['id']); ?>">
 	<article class="detail_art">

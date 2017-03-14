@@ -1,0 +1,214 @@
+<extend name="Base:base" />
+<block name="title">个人中心</block>
+<block name="static">
+<link rel="stylesheet" type="text/css" href="{:C('CSS')}smh_alert.css"/>
+</block>
+<block name="body">
+	<body>
+		<form class="person_form">
+			<p>
+				<label for="person_name">昵称</label>
+				<input type="text" value="{$data.nick_name}" id="person_name"/>
+			</p>
+			<p>
+				<label>性别</label>
+				<if condition="$data['sex'] eq '男'">
+				<span class="person_sex"><em class="person_em1"></em>男</span>
+				<else/>
+				<span class="person_sex"><em></em>男</span>
+				</if>
+				
+				<if condition="$data['sex'] eq '女'">
+				<span class="person_sex"><em class="person_em1"></em>女</span>
+				<else/>
+				<span class="person_sex"><em></em>女</span>
+				</if>
+			</p>
+			<p class="person_form_pend">
+				<label>手机</label>
+				<if condition="$data['mobile_number'] eq NULL">
+				<em>绑定</em>
+				<else/>
+				<em>{$data.mobile_number}</em>
+				</if>
+			</p>
+			<div class="preson_form_div">
+				<h6>兴趣<em>（可最多选择5个）</em></h6>
+				<ul class="preson_form_like">
+					<foreach item="hobby" name="hobby_list">
+					<if condition="$hobby['state'] eq 1">
+					<li category_id="{$hobby.id}" class="preson_form_li1">{$hobby.category}</li>
+					<else/>
+					<li category_id="{$hobby.id}">{$hobby.category}</li>
+					</if>
+					
+					</foreach>
+					
+				</ul>
+			</div>
+			<div class="novel_foot">
+				<a href="#" id="novel_out">保存</a>
+			</div>
+		</form>
+		<div class="person_alert">
+			<div class="person_alert_meng"></div>
+			<form action="" id="person_alert_form">
+				<p>
+					<label for="person_alert_phone">手机号：</label>
+					<input type="text" id="person_alert_phone" smh_required="请输入手机号" smh_phone="您输入的信息有误"/>
+				</p>
+				<p>
+					<label for="person_alert_yzm">验证码：</label>
+					<input type="text" id="person_alert_yzm" smh_number="您输入的验证码有误" smh_num_code=4 smh_num_code_message="您输入的验证码有误"/>
+					<em id="person_alert_yzmbutton">验证码</em>
+					<input type="text" id="yanzheng" value="" />
+				</p>
+				<div>
+					<em class="person_alert_bottonl">取消</em>
+					<em class="person_alert_bottonr color_zhu">确定</em>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				//性别
+				$('.person_sex').click(function(){
+					$('.person_sex em').removeClass('person_em1');
+					$(this).find('em').addClass('person_em1');
+				});
+				
+				//兴趣
+				$('.preson_form_like li').click(function(){
+					if($(this).hasClass('preson_form_li1')){
+						$(this).removeClass('preson_form_li1');
+					}else if($('.preson_form_li1').length>=5){
+						return false;
+					}else{
+						
+						$(this).addClass('preson_form_li1');
+					}
+				});
+				
+				//绑定手机
+				$('.person_form_pend').click(function(){
+					$('.person_alert').show();
+				});
+				$('.person_alert_meng').click(function(e){
+					$('.person_alert').hide();
+				});
+				
+				//验证码
+				var InterValObj; //timer变量，控制时间
+				var count = 60; //间隔函数，1秒执行
+				var curCount;//当前剩余秒数
+				var yzm_button=$('#person_alert_yzmbutton');
+				yzm_button.click(function(){
+					$('#person_alert_yzm').val();
+					if($(this).text()!="验证码"){
+						return false;
+					}
+					var y=required()&&sphone();
+					if(y==true){
+					
+						//后台请求获取验证码
+						$.post("__CONTROLLER__/yanzheng",{},function(data){
+							$("#yanzheng").val(data);
+						})
+						curCount = count;
+					　　//设置button效果，开始计时
+					  	yzm_button.text(curCount + "s");
+					  	InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+					}else{
+						return false;
+					}
+				});
+				
+				//timer处理函数
+				function SetRemainTime() {
+			        if (curCount == 0) {                
+			            window.clearInterval(InterValObj);//停止计时器
+			            yzm_button.text("验证码");
+			        }
+			        else {
+			            curCount--;
+			            yzm_button.text(curCount + "s");
+			        }
+		        }
+				
+				//确定
+				$('.person_alert_bottonr').click(function(){
+					var state=smh_alert(); //验证函数
+					if($('#person_alert_yzm').val().length==0){
+						alertmessage('请输入验证码');
+						return false;
+					}
+					if(state==true){
+						console.log("验证成功");
+						var yanzheng = $("#yanzheng").val();
+						var yzm = $("#person_alert_yzm").val();
+						if(yanzheng != yzm){
+							alertmessage("您输入的验证码有误");
+							return false;
+						}else{
+							var str=$('#person_alert_phone').val();
+							$('.person_form_pend em').text(str);
+							$('.person_alert').hide();
+						}
+						
+						
+					}
+				});
+				//取消
+				$('.person_alert_bottonl').click(function(){
+					$('#person_alert_phone').val('');
+					$('#person_alert_yzm').val('');
+					clearInterval(InterValObj);
+					$('#person_alert_yzmbutton').text("验证码");
+					$('.person_alert').hide();
+				});
+				
+				$("#novel_out").click(function(){
+						var cate_arr=[];
+						var b=[];
+						var name=$('#person_name').val();
+						var sex=$('.person_em1').parent().text();
+						var mobile=$('#person_alert_phone').val();
+						var n='{nick_name:"'+name+'"}';
+						var s='{sex:"'+sex+'"}';
+						var m='{mobile_number:"'+mobile+'"}';
+						//console.log(name);
+						//console.log(sex);
+						b.push(strToJson(n));
+						b.push(strToJson(s));
+						b.push(strToJson(m));
+						
+						//alert(cate_id);
+						$('.preson_form_li1').each(function(){
+							var cate_id = $(this).attr("category_id");
+							var str='{category_id:"'+cate_id+'"}';
+							var obj = strToJson(str);
+							cate_arr.push(obj);
+						})
+						//console.log(cate_arr);
+						//b.push(cate_arr);
+						//console.log(b)
+					
+						function strToJson(str){ 
+							var json = eval('(' + str + ')'); 
+							return json; 
+						}
+							
+						$.post("__CONTROLLER__/userinfo_mod",{userinfo:b,hobbys:cate_arr},function(data){
+							if(data == 1){
+								alertmessage("修改成功");
+								window.location.href="__CONTROLLER__/me";
+							}else{
+								alertmessage("无信息修改");
+							}
+						})
+							
+				})
+			});
+		</script>
+	</body>
+</block>

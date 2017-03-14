@@ -14,7 +14,7 @@
 
 	<body class="bookCity_body">
 	<header class="bookCity_head">
-		<a href="#">请输入作者或书名</a>
+		<a href="<?php echo U('Book/b_search');?>">请输入作者或书名</a>
 		<nav class="bookCity_nav">
 			<ul id="bookCity_nav">
 				<li class="bookCity_nav_selected">全部</li>
@@ -44,7 +44,7 @@
 		<ul class="novel_btn">
 			<li class="novel_btn1"><a href="<?php echo U('Index/index');?>" class="color_hui"><em class="novel_btn_false"></em>首页</a></li>
 			<li class="novel_btn2"><a href="javascript:void(0);" class="color_zhu"><em class="novel_btn_true"></em>书城</a></li>
-			<li class="novel_btn3"><a href="#" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
+			<li class="novel_btn3"><a href="<?php echo U('BeautifulWords/beautifulwords');?>" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
 			<li class="novel_btn4"><a href="<?php echo U('bookshelf');?>" class="color_hui"><em class="novel_btn_false"></em>书架</a></li>
 			<li class="novel_btn5"><a href="<?php echo U('User/me');?>" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
 		</ul>

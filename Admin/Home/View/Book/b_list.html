@@ -20,8 +20,8 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <volist name="bookList" id="vo">
+                            <tbody id="body_content">
+                            <volist name="bookList" id="vo" key="k">
                                 <tr>
                                     <td>{$vo.book_name}</td>
                                     <td>{$vo.number_of_words}</td>
@@ -43,10 +43,13 @@
                                                 已上架
                                             </eq>
                                         </button>
+                                        <!--<button type="button" class="btn btn-danger">删除</button>-->
+                                        <empty name="vo['chapter_exists']">
+                                            <button class="btn btn-info" type="button" onclick="cutChapter('{$vo.id}',this)" data-id="{$k}">断章</button>
+                                        </empty>
                                     </td>
                                 </tr>
                             </volist>
-
                             </tbody>
                         </table>
                     </div>
@@ -73,5 +76,20 @@
                 }
             });
         }
+        var bool = true;
+        function cutChapter(id,the) {
+            var content = '<tr><td colspan="4"><div class="col-sm-12">';
+            content += '<iframe id="progress_frame" width="100%" height="100%" src="" frameborder="0" seamless></iframe>';
+            content += '</div></td><tr>';
+            var number = the.getAttribute('data-id');
+            console.log(bool);
+            if (bool) {
+                $('button[data-id='+number+']').parent().parent().after(content);
+                $('#progress_frame').attr('src','__MODULE__/Chapter/cut_chapter?bookId='+id);
+                bool = false;
+            }
+            console.log(bool);
+        }
     </script>
+
 </block>

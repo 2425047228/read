@@ -26,6 +26,10 @@
 		   
 		   $("#novel_out").click(function(){
 				var content = $("#feedback_input").val();
+				if(content == ""){
+					alert("反馈内容不能为空");
+					return false;
+				}
 				$.post("__ACTION__",{content:content},function(data){
 					if(data == 1){
 						alert("数据提交成功");

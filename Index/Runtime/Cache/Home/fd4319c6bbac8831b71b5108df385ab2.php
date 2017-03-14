@@ -16,7 +16,7 @@
 	</header>
 	<input type="hidden" id="book_id" value="<?php echo ($bookId); ?>">
 	<article class="read_art">
-		<p class="read_art_word"><?php echo ($chapterInfo["chapter_content"]); ?></p>
+		<p class="read_art_word"><?php echo ($chapterInfo["chapter"]); echo ($chapterInfo["chapter_content"]); ?></p>
 		<div>
 			<a href="<?php echo U('b_read',['b_id'=>$bookId,'chapter'=>($chapterInfo['chapter_sort']+1)]);?>" class="color_zhu" id="read_next"><?php echo ($nextChapter); ?></a>
 			<p>请点击章节到下一章</p>

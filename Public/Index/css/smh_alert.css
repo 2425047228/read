@@ -1,0 +1,259 @@
+/* LESS */
+#smh_alertall .smh_alertbg {
+  background-color: #000;
+  opacity: 0.3;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 9999;
+}
+#smh_alertall .smh_alert {
+  display: none;
+  width: 7.17333333rem;
+  height: 3.65333333rem;
+  background-color: #fff;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  margin-top: 5.06666667rem;
+  margin-left: 1.41333333rem;
+}
+#smh_alertall .smh_alert .smh_alert_text {
+  text-align: center;
+  height: 2.56rem;
+  line-height: 2.56rem;
+}
+#smh_alertall .smh_alert .smh_alert_text p {
+  color: #333333;
+  font-size: 0.42666667rem;
+}
+#smh_alertall .smh_alert .smh_alert_text p input {
+  border: solid 1px #e0e0e0;
+  width: 3.6rem;
+  height: 0.77333333rem;
+  color: #333333;
+  font-size: 0.37333333rem;
+  padding-left: 0.32rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alert .smh_alert_confirm {
+  padding: 1rem 0.32rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alert .smh_alert_confirm p {
+  height: 0.8rem;
+  line-height: 0.53333333rem;
+}
+#smh_alertall .smh_alert .smh_alert_input {
+  width: 100%;
+  padding: 0.42666667rem 0.32rem;
+  height: 3.29333333rem;
+  box-sizing: border-box;
+  color: #cccccc;
+  font-size: 0.37333333rem;
+}
+#smh_alertall .smh_alert #div_wordCount {
+  position: absolute;
+  color: #cccccc;
+  font-size: 0.37333333rem;
+  top: 2.53333333rem;
+  right: 0.24rem;
+}
+#smh_alertall .smh_alert .smh_alert_button {
+  width: 100%;
+  height: 1.09333333rem;
+  border-top: solid 1px #b3b3b3;
+  font-size: 0.42666667rem;
+  text-align: center;
+}
+#smh_alertall .smh_alert .smh_alert_button span {
+  display: inline-block;
+  width: 49%;
+  line-height: 1.09333333rem;
+}
+#smh_alertall .smh_alert .smh_alert_button .smh_alert_button_left {
+  border-right: solid 1px #b3b3b3;
+  color: #2e2e2e;
+}
+#smh_alertall .smh_alert .smh_alert_button .smh_alert_button_colorh {
+  color: #cccccc;
+}
+#smh_alertall .smh_alert .smh_alert_button .smh_alert_button_colorg {
+  color: #09b1b0;
+}
+#smh_alertall .smh_alertinput {
+  display: none;
+  width: 8.66666667rem;
+  height: 4.68rem;
+  margin-top: 4.13333333rem;
+  margin-left: 0.66666667rem;
+}
+#smh_alertall .smh_alertinput .smh_alert_text {
+  height: 3.49333333rem;
+  line-height: 3.49333333rem;
+}
+#smh_alertall .smh_alertinput .smh_alert_text p input {
+  border: solid 1px #e0e0e0;
+  width: 3.6rem;
+  height: 0.77333333rem;
+  color: #333333;
+  font-size: 0.37333333rem;
+  padding-left: 0.32rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alertinput .smh_alert_text p em {
+  margin-left: 0.16rem;
+}
+#smh_alertall .smh_alertinput .smh_alert_button {
+  height: 1.17333333rem;
+}
+#smh_alertall .smh_alertinput .smh_alert_button span {
+  line-height: 1.17333333rem;
+}
+#smh_alertall .smh_alertyzm {
+  display: none;
+  width: 8.66666667rem;
+  height: 4.68rem;
+  margin-top: 4.13333333rem;
+  margin-left: 0.66666667rem;
+}
+#smh_alertall .smh_alertyzm .smh_alert_text {
+  height: 3.49333333rem;
+  line-height: 3.49333333rem;
+}
+#smh_alertall .smh_alertyzm .smh_alert_text p input {
+  border: solid 1px #e0e0e0;
+  width: 4.93333333rem;
+  height: 0.93333333rem;
+  color: #333333;
+  font-size: 0.37333333rem;
+  padding-left: 0.21333333rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alertyzm .smh_alert_text p ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #cccccc;
+}
+#smh_alertall .smh_alertyzm .smh_alert_text p em {
+  margin-left: 0.16rem;
+  display: inline-block;
+  width: 2.56rem;
+  line-height: 0.93333333rem;
+  background-color: #09b1b0;
+  color: #fff;
+  font-size: 0.37333333rem;
+}
+#smh_alertall .smh_alertyzm .smh_alert_button {
+  height: 1.17333333rem;
+}
+#smh_alertall .smh_alertyzm .smh_alert_button span {
+  line-height: 1.17333333rem;
+}
+#smh_alertall .smh_alertinput2 {
+  display: none;
+  width: 8.05333333rem;
+  height: 3.88rem;
+  margin-top: 2.4rem;
+  margin-left: 0.98666667rem;
+}
+#smh_alertall .smh_alertinput2 .smh_alert_text {
+  height: 2.69333333rem;
+  line-height: 2.69333333rem;
+}
+#smh_alertall .smh_alertinput2 .smh_alert_text p input {
+  border: solid 1px #e0e0e0;
+  width: 3.6rem;
+  height: 0.77333333rem;
+  color: #333333;
+  font-size: 0.37333333rem;
+  padding-left: 0.32rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alertinput2 .smh_alert_text p em {
+  margin-left: 0.16rem;
+}
+#smh_alertall .smh_alertinput2 .smh_alert_button {
+  height: 1.17333333rem;
+}
+#smh_alertall .smh_alertinput2 .smh_alert_button span {
+  line-height: 1.17333333rem;
+}
+#smh_alertall .smh_alertinput3 {
+  display: none;
+  width: 8.66666667rem;
+  height: 5.18666667rem;
+  margin-top: 4.13333333rem;
+  margin-left: 0.66666667rem;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_text {
+  height: 4rem;
+  padding-top: 0.58666667rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_text p {
+  line-height: 0.77333333rem;
+  margin-bottom: 0.24rem;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_text p span {
+  display: inline-block;
+  width: 2.66666667rem;
+  text-align: right;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_text p input {
+  border: solid 1px #e0e0e0;
+  width: 3.6rem;
+  height: 0.77333333rem;
+  color: #333333;
+  font-size: 0.37333333rem;
+  padding-left: 0.32rem;
+  box-sizing: border-box;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_text p em {
+  margin-left: 0.16rem;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_button {
+  height: 1.17333333rem;
+}
+#smh_alertall .smh_alertinput3 .smh_alert_button span {
+  line-height: 1.17333333rem;
+}
+/*弹出框*/
+@-webkit-keyframes alert1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.alertnb {
+  -webkit-animation: alert1 2s ease infinite alternate ;
+}
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.alert div {
+  margin-left: 3.65rem;
+  margin-top: 6rem;
+  text-align: center;
+  border-radius: 0.08rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.32rem;
+  width: 3rem;
+  line-height: 0.8rem;
+  height: 0.8rem;
+}

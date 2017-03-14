@@ -8,7 +8,7 @@ class IndexController extends CommonController
 {
     public function index()
     {
-       /* if (empty(cookie('openid'))) {
+        if (empty(cookie('openid')) || empty(cookie('userId'))) {
             $cookieTime = C('COOKIE_TIME');
             $userInfo = weixinuserinfo();
             $user = M('User');
@@ -31,20 +31,10 @@ class IndexController extends CommonController
             }
             cookie('openid',$userInfo['openid'],$cookieTime);
             cookie('avatarFile', $userInfo['headimgurl'], $cookieTime);
-            cookie('sex', $userInfo['sex'], $cookieTime);
-            cookie('nickName', $userInfo['nickname'], $cookieTime);
-        }*/
-        if (I('get.id')) {
-            $cookieTime = C('COOKIE_TIME');
-            $userInfo = M('User')->where(['id'=>I('get.id')])->find();
-            cookie('userId', I('get.id'), $cookieTime);
-            cookie('openid',$userInfo['openid'],$cookieTime);
-            cookie('avatarFile', $userInfo['avatar_file'], $cookieTime);
-            cookie('sex', $userInfo['sex'], $cookieTime);
-            cookie('nickName', $userInfo['nick_name'], $cookieTime);
         }
+
         //获取banner
-        $bannerList = M('Banner')->field('banner_file, book_id')->select();
+        $bannerList = M('Banner')->field('banner_file, book_id')->where(['banner_state'=> 1])->select();
         //获取热门图书列表
         $hotBookList = M('Book')->alias('b')
             ->field('b.id, b.book_banner, b.is_hot, b.book_name, b.readed_number, b.number_of_words, a.author')

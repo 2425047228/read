@@ -64,11 +64,13 @@
 			/********************************************************************************************************/
 			var pageInfo = 1;    //记录数据分页信息
 			var bookId = '<?php echo ($bookId); ?>';
+			getData(pageInfo);
+			pageInfo++;
 			function getData(page,execStart,execResult) {
 				if (typeof execStart == "function") {
 					execStart();
 				}
-				$.post('/index.php/Home/Book/catalogue/b_id/17.html',{'b_id':bookId,'page':page},function (json) {
+				$.post('/index.php/Home/Book/catalogue/b_id/21.html',{'b_id':bookId,'page':page},function (json) {
 					var jsonData = eval('('+json+')');
 					var len = jsonData.length;
 					if (len == 0) {

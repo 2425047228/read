@@ -44,21 +44,29 @@ class BookController extends CommonController
         $bookId = I('get.b_id');
         $validate = !empty($bookId) && is_numeric($bookId);
         if ($validate) {
-            $bookInfo = M('Book')->field('book_name')->where(['id' => I('get.b_id')])->find();
-            $chapter = I('get.chapter');
-            if (empty($chapter) || !is_numeric($chapter)) {    //判断章节
-                $chapter = 1;
-            }
             $chapterObject = M('Chapter');
+            $cookieTime = C('COOKIE_TIME');
+            $finalChapter = $chapterObject->where(['book_id'=>$bookId])->order('chapter_sort desc')->getField('chapter_sort');
+            $bookInfo = M('Book')->field('book_name')->where(['id' => I('get.b_id')])->find();
+            $chapter = I('get.chapter');    // == 0 ? 1:I('get.chapter');    //判断首章
+            $chapter = $chapter > $finalChapter ? $finalChapter : $chapter;    //判断最终章
+            $chapterCookieName = 'recordBookChapter'.$bookId;    //获取当前书籍历史章节的cookie名
+            if (empty($chapter) || !is_numeric($chapter)) {    //判断章节
+                $recordBookChapter = cookie($chapterCookieName);    //历史章节
+                $chapter = !empty($recordBookChapter) ? $recordBookChapter:1;
+
+            }
+
             $chapterInfo = $chapterObject->field('chapter, chapter_content, chapter_sort')
                 ->where(['book_id'=>$bookId, 'chapter_sort'=>$chapter])
                 ->find();
             $nextChapter = $chapterObject->where(['book_id'=>$bookId, 'chapter_sort'=>($chapter+1)])->getField('chapter');
 
             //记录足迹
-            $cookieTime = C('COOKIE_TIME');
             cookie('readRecord', $bookId, $cookieTime);
             cookie('readRecordTime', time(), $cookieTime);
+            //当前浏览至章节
+            cookie($chapterCookieName,$chapter,$cookieTime);
 
             //判断来源
             $nowAction = CONTROLLER_NAME . '/' . ACTION_NAME;
@@ -165,7 +173,7 @@ class BookController extends CommonController
             ->join('left join __BOOK__ b on b.id = f.book_id')
             ->join('left join __AUTHOR__ a on a.id = b.author_id')
             ->where("f.user_id = {$userId} AND b.book_state = 1")
-            ->order('id desc')
+            ->order('b.id desc')
             ->select();
 
         $this->assign('bookshelf', $bookshelf);

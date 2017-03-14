@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>书架</title>
+    <title>搜索</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" name="viewport" />
     <link rel="stylesheet" type="text/css" href="<?php echo C('CSS');?>common.css"/>
     <script src="<?php echo C('JS');?>common.js" type="text/javascript" charset="utf-8"></script>

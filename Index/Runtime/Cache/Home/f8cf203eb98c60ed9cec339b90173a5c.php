@@ -18,7 +18,14 @@
 		<div class="swiper-container" style="height:100%;">
 			<div class="swiper-wrapper">
 				<!--轮播图部分-->
-				<?php if(!empty($bannerList)): if(is_array($bannerList)): $i = 0; $__LIST__ = $bannerList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="swiper-slide"><a href="javascript:void(0);"><img src="<?php echo ($vo["banner_file"]); ?>" alt="" width="100%" height="100%"/></a></div><?php endforeach; endif; else: echo "" ;endif; ?>
+				<?php if(!empty($bannerList)): if(is_array($bannerList)): $i = 0; $__LIST__ = $bannerList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="swiper-slide">
+							<?php if(empty($vo['book_id'])): ?><a href="javascript:void(0);">
+									<?php else: ?>
+									<a href="<?php echo U('Book/b_detail',['b_id'=>$vo['book_id']]);?>"><?php endif; ?>
+
+								<img src="<?php echo ($vo["banner_file"]); ?>" alt="" width="100%" height="100%"/>
+							</a>
+						</div><?php endforeach; endif; else: echo "" ;endif; ?>
 					<?php else: ?>
 					<div class="swiper-slide"><a href="#"><img src="<?php echo C('IMG');?>test_lb.png" alt="" width="100%" height="100%"/></a></div><?php endif; ?>
 			</div>
@@ -65,7 +72,7 @@
 		<ul class="novel_btn">
 			<li class="novel_btn1"><a href="javascript:void(0);" class="color_zhu"><em class="novel_btn_true"></em>首页</a></li>
 			<li class="novel_btn2"><a href="<?php echo U('Book/library');?>" class="color_hui"><em class="novel_btn_false"></em>书城</a></li>
-			<li class="novel_btn3"><a href="#" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
+			<li class="novel_btn3"><a href="<?php echo U('BeautifulWords/beautifulwords');?>" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
 			<li class="novel_btn4"><a href="<?php echo U('Book/bookshelf');?>" class="color_hui"><em class="novel_btn_false"></em>书架</a></li>
 			<li class="novel_btn5"><a href="<?php echo U('User/me');?>" class="color_hui"><em class="novel_btn_false"></em>我</a></li>
 		</ul>

@@ -21,13 +21,23 @@ class BookController extends CommonController
             }
             $id = I('post.id');
             $state = I('post.state');
+            if ($state == 1) {
+                $chapterInfo = M('Chapter')->where(['book_id'=>$id])->find();
+                if (!$chapterInfo) {
+                    exit('FAIL');
+                }
+            }
             $info = M('Book')->save(['id' => $id, 'book_state' => $state]);
             if ($info) {
                 exit('SUCCESS');
             }
             exit('FAIL');
         }
-        $bookList = M('Book')->field('id, book_name, number_of_words, is_hot, book_state')->order('id desc')->select();
+        $bookList = M('Book')->alias('b')
+            ->field('b.id, b.book_name, b.number_of_words, b.is_hot, b.book_state,c.id chapter_exists')
+            ->join('left join __CHAPTER__ c on c.book_id = b.id')
+            ->group('b.id')
+            ->order('b.id desc')->select();
         $this->assign('bookList', $bookList);
         $this->display();
     }

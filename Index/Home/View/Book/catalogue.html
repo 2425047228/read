@@ -56,6 +56,8 @@
 			/********************************************************************************************************/
 			var pageInfo = 1;    //记录数据分页信息
 			var bookId = '{$bookId}';
+			getData(pageInfo);
+			pageInfo++;
 			function getData(page,execStart,execResult) {
 				if (typeof execStart == "function") {
 					execStart();

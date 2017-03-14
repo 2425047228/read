@@ -8,7 +8,7 @@
 	</header>
 	<input type="hidden" id="book_id" value="{$bookId}">
 	<article class="read_art">
-		<p class="read_art_word">{$chapterInfo.chapter_content}</p>
+		<p class="read_art_word">{$chapterInfo.chapter}{$chapterInfo.chapter_content}</p>
 		<div>
 			<a href="{:U('b_read',['b_id'=>$bookId,'chapter'=>($chapterInfo['chapter_sort']+1)])}" class="color_zhu" id="read_next">{$nextChapter}</a>
 			<p>请点击章节到下一章</p>

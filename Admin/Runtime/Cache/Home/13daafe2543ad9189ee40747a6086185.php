@@ -39,8 +39,8 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <?php if(is_array($bookList)): $i = 0; $__LIST__ = $bookList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                            <tbody id="body_content">
+                            <?php if(is_array($bookList)): $k = 0; $__LIST__ = $bookList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
                                     <td><?php echo ($vo["book_name"]); ?></td>
                                     <td><?php echo ($vo["number_of_words"]); ?></td>
                                     <td>
@@ -57,9 +57,10 @@
                                                 <?php else: ?>
                                                 已上架<?php endif; ?>
                                         </button>
+                                        <!--<button type="button" class="btn btn-danger">删除</button>-->
+                                        <?php if(empty($vo['chapter_exists'])): ?><button class="btn btn-info" type="button" onclick="cutChapter('<?php echo ($vo["id"]); ?>',this)" data-id="<?php echo ($k); ?>">断章</button><?php endif; ?>
                                     </td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-
                             </tbody>
                         </table>
                     </div>
@@ -88,6 +89,21 @@
                 }
             });
         }
+        var bool = true;
+        function cutChapter(id,the) {
+            var content = '<tr><td colspan="4"><div class="col-sm-12">';
+            content += '<iframe id="progress_frame" width="100%" height="100%" src="" frameborder="0" seamless></iframe>';
+            content += '</div></td><tr>';
+            var number = the.getAttribute('data-id');
+            console.log(bool);
+            if (bool) {
+                $('button[data-id='+number+']').parent().parent().after(content);
+                $('#progress_frame').attr('src','/admin.php/Home/Chapter/cut_chapter?bookId='+id);
+                bool = false;
+            }
+            console.log(bool);
+        }
     </script>
+
 
 </html>

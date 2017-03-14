@@ -140,7 +140,7 @@ class ChapterController extends CommonController
             M()->commit();
             fclose($fp);
             $url = U('Book/b_list');
-            exit("<script>window.parent.location.href='{$url}';</script>");
+            exit("<script>window.parent.location.reload();</script>");
         }
     }
 

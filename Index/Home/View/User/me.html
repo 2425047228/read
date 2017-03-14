@@ -3,19 +3,30 @@
 <block name="body">
 	<body>
 		<header class="me_head">
-			<a href="#">
+			<a href="__CONTROLLER__/personalinformation">
 				<em class="me_set"></em>
 				<div class="me_main">
-					<div class="me_tou"><img src="__PUBLIC__/Index/images/0.jpeg" alt=""/></div>
-					<h5 class="color_black">老师</h5>
-					<p class="color_black"><img src="__PUBLIC__/Index/images/me_nv.png"/>女</p>
+					<div class="me_tou">
+					<if condition="$data['avatar_file'] eq NULL">
+					<img src="__PUBLIC__/Index/images/me_bg3.png" alt=""/>
+					<else/>
+					<img src="{$data.avatar_file}" alt=""/>
+					</if>
+					
+					</div>
+					<h5 class="color_black">{$data.nick_name}</h5>
+					<p class="color_black">
+					<if condition="$data['sex'] eq '男'">
+					<img src="__PUBLIC__/Index/images/me_nan.png"/>
+					<else/>
+					<img src="__PUBLIC__/Index/images/me_nv.png"/>
+					</if>
+					{$data.sex}</p>
 				</div>
 				<ul class="color_white">
-					<li id="me_li1">古装言情</li>
-					<li id="me_li2">古装言情</li>
-					<li id="me_li3">古装言情</li>
-					<li id="me_li4">古装言情</li>
-					<li id="me_li5">古装言情</li>
+					<foreach item="hobby" name="data['hobby']">
+					<li id="me_li{$key+1}">{$hobby.hobby_name}</li>
+					</foreach>
 				</ul>
 			</a>
 		</header>
@@ -33,20 +44,14 @@
         		<ul class="novel_btn">
         			<li class="novel_btn1"><a href="__MODULE__/Index/index" class="color_hui"><em class="novel_btn_false"></em>首页</a></li>
         			<li class="novel_btn2"><a href="{:U('Book/library')}" class="color_hui"><em class="novel_btn_false"></em>书城</a></li>
-        			<li class="novel_btn3"><a href="#" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
+        			<li class="novel_btn3"><a href="{:U('BeautifulWords/beautifulwords')}" class="color_hui"><em class="novel_btn_false"></em>美文</a></li>
         			<li class="novel_btn4"><a href="{:U('Book/bookshelf')}" class="color_hui"><em class="novel_btn_false"></em>书架</a></li>
         			<li class="novel_btn5"><a href="__MODULE__/User/me" class="color_zhu"><em class="novel_btn_true"></em>我</a></li>
         		</ul>
 		</footer>
 	</body>
 	<!-------
-	
-	
-	
 	https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2b618fb1705e8bb&redirect_uri=http://read.wzj.dev.shuxier.com/index.php/Home/User/userinfo&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
-	
-	
-	
 	
 	
 	----------->
