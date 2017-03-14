@@ -1,0 +1,810 @@
+[ 2017-03-14T10:26:41+08:00 ] 127.0.0.1 /App/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004789s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.017639s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017685s ]
+
+[ 2017-03-14T10:27:31+08:00 ] 127.0.0.1 /App/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000290s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000549s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `rd_banner` [ RunTime:0.0483s ]
+SQL: SELECT `banner_file`,`book_id` FROM `rd_banner` WHERE `banner_state` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0232s ]
+SQL: SELECT b.id,b.book_banner,b.is_hot,b.book_name,b.readed_number,b.number_of_words,a.author FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE ( b.is_hot > 0 AND book_state = 1 ) ORDER BY id desc  [ RunTime:0.0196s ]
+
+[ 2017-03-14T10:28:41+08:00 ] 127.0.0.1 /App/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000627s ]
+SQL: SHOW COLUMNS FROM `rd_banner` [ RunTime:0.0335s ]
+SQL: SELECT `banner_file`,`book_id` FROM `rd_banner` WHERE `banner_state` = 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0440s ]
+SQL: SELECT b.id,b.book_banner,b.is_hot,b.book_name,b.readed_number,b.number_of_words,a.author FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE ( b.is_hot > 0 AND book_state = 1 ) ORDER BY id desc  [ RunTime:0.0003s ]
+
+[ 2017-03-14T10:50:44+08:00 ] 127.0.0.1 /App/Index/library_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000363s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000586s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.2126s ]
+SQL: SELECT `id`,`category` FROM `rd_category` LIMIT 0,3   [ RunTime:0.0003s ]
+
+[ 2017-03-14T10:56:19+08:00 ] 127.0.0.1 /App/Index/library
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000613s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000655s ]
+SQL: SHOW COLUMNS FROM `rd_book_categories` [ RunTime:0.0319s ]
+SQL: SELECT DISTINCT  COUNT(*) AS tp_count FROM rd_book_categories c left join rd_book b on c.book_id = b.id  WHERE ( b.book_state = 1 AND c.category_id = 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  b.id,b.book_name,a.author,b.readed_number,b.number_of_words,b.is_hot,`book_banner` FROM rd_book_categories c left join rd_book b on c.book_id = b.id left join rd_author a on a.id = b.author_id  WHERE ( b.book_state = 1 AND c.category_id = 1 ) ORDER BY id desc LIMIT 0,10   [ RunTime:0.0006s ]
+
+[ 2017-03-14T11:02:28+08:00 ] 127.0.0.1 /App/Index/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0401s ]
+SQL: SELECT `id`,`is_hot`,`book_name` FROM `rd_book` WHERE `book_state` = 1 AND `searched` <> 0 ORDER BY searched desc LIMIT 6   [ RunTime:0.0003s ]
+
+[ 2017-03-14T11:05:50+08:00 ] 127.0.0.1 /App/Index/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000549s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0277s ]
+SQL: SELECT `id`,`is_hot`,`book_name` FROM `rd_book` WHERE `book_state` = 1 AND `searched` <> 0 ORDER BY searched desc LIMIT 6   [ RunTime:0.0003s ]
+
+[ 2017-03-14T11:06:00+08:00 ] 127.0.0.1 /App/Index/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000288s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000377s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0544s ]
+SQL: SELECT b.id,b.book_banner,b.is_hot,b.book_name,b.readed_number,b.number_of_words,a.author FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE ( book_state = 1 AND (a.author like '%r%' OR b.book_name like '%r%') ) ORDER BY id desc  [ RunTime:0.0003s ]
+
+[ 2017-03-14T11:07:07+08:00 ] 127.0.0.1 /App/Index/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000352s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000388s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0230s ]
+SQL: SELECT b.id,b.book_banner,b.is_hot,b.book_name,b.readed_number,b.number_of_words,a.author FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE ( book_state = 1 AND (a.author like '%最新%' OR b.book_name like '%最新%') ) ORDER BY id desc  [ RunTime:0.0004s ]
+
+[ 2017-03-14T11:13:51+08:00 ] 127.0.0.1 /App/Index/search_all
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000622s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0174s ]
+SQL: UPDATE `rd_book` SET `searched`=searched+1 WHERE `id` = 1 [ RunTime:0.1209s ]
+
+[ 2017-03-14T11:14:20+08:00 ] 127.0.0.1 /App/Index/search_all
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0726s ]
+SQL: UPDATE `rd_book` SET `searched`=searched+1 WHERE `id` = 12323 [ RunTime:0.0002s ]
+
+[ 2017-03-14T11:20:57+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000361s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000649s ]
+
+[ 2017-03-14T11:21:54+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000361s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+
+[ 2017-03-14T11:22:01+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000355s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000398s ]
+
+[ 2017-03-14T11:22:15+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000376s ]
+
+[ 2017-03-14T11:22:23+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000291s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000434s ]
+
+[ 2017-03-14T11:22:49+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000690s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000383s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0434s ]
+SQL: SELECT b.id,b.book_cover,b.book_name,a.author,b.shelves_time,b.number_of_words,b.book_synopsis,a.author_synopsis FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE b.id = '2' AND b.book_state = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0135s ]
+SQL: SELECT c.category FROM rd_category c right join rd_book_categories b on c.id = b.category_id  WHERE b.book_id = '2'  [ RunTime:0.0003s ]
+
+[ 2017-03-14T11:29:04+08:00 ] 127.0.0.1 /App/Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000602s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0048s ]
+SQL: SELECT b.id,b.book_cover,b.book_name,a.author,b.shelves_time,b.number_of_words,b.book_synopsis,a.author_synopsis FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE b.id = '2' AND b.book_state = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0433s ]
+SQL: SELECT c.category FROM rd_category c right join rd_book_categories b on c.id = b.category_id  WHERE b.book_id = '2' LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-14T11:33:00+08:00 ] 127.0.0.1 /App/Index/catalogue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000599s ]
+
+[ 2017-03-14T11:33:08+08:00 ] 127.0.0.1 /App/Index/catalogue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000370s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000408s ]
+
+[ 2017-03-14T11:33:13+08:00 ] 127.0.0.1 /App/Index/catalogue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000414s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000457s ]
+
+[ 2017-03-14T11:33:46+08:00 ] 127.0.0.1 /App/Index/catalogue
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000346s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000380s ]
+SQL: SHOW COLUMNS FROM `rd_chapter` [ RunTime:0.2230s ]
+SQL: SELECT `chapter`,`chapter_sort` FROM `rd_chapter` WHERE `book_id` = 4 ORDER BY chapter_sort asc LIMIT 0,10   [ RunTime:1.1583s ]
+
+[ 2017-03-14T11:38:37+08:00 ] 127.0.0.1 /App/Index/book_r
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000604s ]
+SQL: SHOW COLUMNS FROM `rd_chapter` [ RunTime:0.0400s ]
+SQL: SELECT `chapter_sort` FROM `rd_chapter` WHERE `book_id` = 4 ORDER BY chapter_sort desc LIMIT 1   [ RunTime:0.0956s ]
+SQL: SELECT `chapter`,`chapter_content`,`chapter_sort` FROM `rd_chapter` WHERE `book_id` = 4 AND `chapter_sort` = 2 LIMIT 1   [ RunTime:0.0203s ]
+SQL: SELECT `chapter` FROM `rd_chapter` WHERE `book_id` = 4 AND `chapter_sort` = 3 LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2017-03-14T14:27:58+08:00 ] 127.0.0.1 /App/Index/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.052224s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.033963s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.034015s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.4591s ]
+SQL: SELECT `id` FROM `rd_user` WHERE `openid` = 'afdsaffdfdfdfdfd' LIMIT 1   [ RunTime:0.0007s ]
+SQL: INSERT INTO `rd_user` (`openid`,`nick_name`,`sex`,`register_time`) VALUES ('afdsaffdfdfdfdfd','hello','1','1489472877') [ RunTime:0.2022s ]
+
+[ 2017-03-14T16:39:32+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004838s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.017789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017828s ]
+
+[ 2017-03-14T16:41:56+08:00 ] 127.0.0.1 /App/Index/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000519s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000552s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0027s ]
+SQL: SELECT `id` FROM `rd_user` WHERE `openid` = 'afdsaffdfdfdfdfddfd' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `rd_user` (`openid`,`nick_name`,`sex`,`register_time`) VALUES ('afdsaffdfdfdfdfddfd','hello','1','1489480916') [ RunTime:0.1452s ]
+
+[ 2017-03-14T16:42:38+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000257s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000316s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000348s ]
+
+[ 2017-03-14T16:44:18+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000563s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+
+[ 2017-03-14T16:45:17+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000262s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000345s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000376s ]
+
+[ 2017-03-14T16:46:30+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000358s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000577s ]
+
+[ 2017-03-14T16:47:20+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000332s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+
+[ 2017-03-14T16:48:16+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000271s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000332s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000364s ]
+
+[ 2017-03-14T16:49:09+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+
+[ 2017-03-14T16:49:49+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000400s ]
+
+[ 2017-03-14T16:50:31+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000402s ]
+
+[ 2017-03-14T16:50:56+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000443s ]
+
+[ 2017-03-14T16:51:21+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000549s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+
+[ 2017-03-14T16:51:51+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000358s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000399s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0722s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0406s ]
+SQL: INSERT INTO `rd_bookshelf` (`book_id`,`user_id`,`join_time`) VALUES ('4','3','1489481511') [ RunTime:0.1524s ]
+
+[ 2017-03-14T16:53:49+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000563s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000577s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000612s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0365s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-14T16:53:53+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000285s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000391s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.1311s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:53:54+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000375s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0551s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:43+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000293s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000364s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0467s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:44+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000356s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000369s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000405s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0173s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:44+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000444s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000491s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0359s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:45+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000311s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0205s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:45+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000376s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0175s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2017-03-14T16:54:45+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0295s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2017-03-14T16:54:46+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000384s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0026s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:49+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000959s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000377s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000418s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0098s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:54:49+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0550s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:56:01+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000337s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000578s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000611s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0026s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:56:28+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000426s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0027s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:57:33+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000378s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0089s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:57:34+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000743s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000663s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000737s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0724s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:57:34+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000853s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000399s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0836s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:57:34+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000389s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0246s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-14T16:57:34+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000305s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000352s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0158s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-14T16:58:34+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0219s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:35+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000378s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0027s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:35+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000372s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000393s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0186s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:35+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000316s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000352s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0268s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:35+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000374s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000415s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0197s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:47+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000440s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0026s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T16:58:48+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000370s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0265s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:00:17+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.1156s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:02:36+08:00 ] 127.0.0.1 /App/User/bookshelf_d
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0291s ]
+SQL: DELETE FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 [ RunTime:0.3974s ]
+
+[ 2017-03-14T17:02:58+08:00 ] 127.0.0.1 /App/User/bookshelf_d
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000383s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0101s ]
+SQL: DELETE FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 [ RunTime:0.0005s ]
+
+[ 2017-03-14T17:10:59+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000356s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000585s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0237s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `rd_bookshelf` (`book_id`,`user_id`,`join_time`) VALUES ('4','3','1489482659') [ RunTime:0.1837s ]
+
+[ 2017-03-14T17:11:00+08:00 ] 127.0.0.1 /App/User/bookshelf_a
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000489s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0293s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `book_id` = 4 AND `user_id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:12:34+08:00 ] 127.0.0.1 /App/User/bookshelf
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000264s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000355s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0024s ]
+SQL: SELECT b.id,b.book_banner,b.is_hot,b.book_name,b.readed_number,b.number_of_words,a.author FROM rd_bookshelf f left join rd_book b on b.id = f.book_id left join rd_author a on a.id = b.author_id  WHERE ( f.user_id = 3 AND b.book_state = 1 ) ORDER BY b.id desc  [ RunTime:0.1602s ]
+
+[ 2017-03-14T17:25:07+08:00 ] 127.0.0.1 /App/Common/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000543s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000577s ]
+
+[ 2017-03-14T17:25:38+08:00 ] 127.0.0.1 /App/User/book_dl
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000369s ]
+
+[ 2017-03-14T17:26:47+08:00 ] 127.0.0.1 /App/User/book_dl
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000387s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000424s ]
+
+[ 2017-03-14T17:26:53+08:00 ] 127.0.0.1 /App/User/book_dl
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000290s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000353s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000387s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0024s ]
+SQL: SELECT `book_name`,`book_file` FROM `rd_book` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:43:31+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000617s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0315s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.1141s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0026s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3' LIMIT 1   [ RunTime:0.0885s ]
+
+[ 2017-03-14T17:44:09+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000499s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000492s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000540s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0025s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0044s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.0003s ]
+
+[ 2017-03-14T17:46:41+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0341s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0435s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: c.category D:\PROJECT\read\ThinkPHP\Library\Think\Model.class.php 第 983 行.
+NOTIC: [8] Undefined index: c.category D:\PROJECT\read\ThinkPHP\Library\Think\Model.class.php 第 983 行.
+NOTIC: [8] Undefined index: c.category D:\PROJECT\read\ThinkPHP\Library\Think\Model.class.php 第 983 行.
+
+[ 2017-03-14T17:54:36+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000355s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000570s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0172s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0887s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.0003s ]
+
+[ 2017-03-14T17:54:50+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000313s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000340s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000375s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0444s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0543s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:55:01+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001065s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0215s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0434s ]
+SQL: SELECT c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:58:39+08:00 ] 127.0.0.1 /App//Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000570s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0027s ]
+SQL: SELECT b.id,b.book_cover,b.book_name,a.author,b.shelves_time,b.number_of_words,b.book_synopsis,a.author_synopsis FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE b.id = '4' AND b.book_state = 1 LIMIT 1   [ RunTime:0.0356s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0038s ]
+SQL: SELECT c.category FROM rd_category c right join rd_book_categories b on c.id = b.category_id  WHERE b.book_id = '4'  [ RunTime:0.0225s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0024s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `user_id` = 3 AND `book_id` = 4 LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2017-03-14T17:59:27+08:00 ] 127.0.0.1 /App//Index/book
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000328s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000369s ]
+SQL: SHOW COLUMNS FROM `rd_book` [ RunTime:0.0241s ]
+SQL: SELECT b.id,b.book_cover,b.book_name,a.author,b.shelves_time,b.number_of_words,b.book_synopsis,a.author_synopsis FROM rd_book b left join rd_author a on a.id = b.author_id  WHERE b.id = '4' AND b.book_state = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0457s ]
+SQL: SELECT c.category FROM rd_category c right join rd_book_categories b on c.id = b.category_id  WHERE b.book_id = '4'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `rd_bookshelf` [ RunTime:0.0027s ]
+SQL: SELECT `id` FROM `rd_bookshelf` WHERE `user_id` = 3 AND `book_id` = 4 LIMIT 1   [ RunTime:0.0003s ]
+

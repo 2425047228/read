@@ -10,8 +10,9 @@ namespace App\Controller;
 
 
 use Think\Controller;
+use Think\Upload;
 
-class CommonController extends Controller
+class CommonController extends EmptyController
 {
     private $key = 'read';    //加密key
     protected $token = null;    //数据接收token
@@ -22,31 +23,10 @@ class CommonController extends Controller
         parent::__construct();
         $token = I('post.token');
         if (!empty($token)) {
-            $this->token = substr($this->keyword_encode(I('post.token'),"DECODE"), 10);
+            $this->token = substr($this->keyword_encode($token,"DECODE"), 10);
         }
     }
 
-    //返回成功或失败的信息
-    protected function returnInformation($retcode, $status, $data = null, $other = [], $superaddition = [])
-    {
-        //返回格式为    {retcode:'', status:'', {other_key:other_value}, data:'', {superaddition_key:superaddition_value}}
-        $arr = ['retcode' => (string)$retcode, 'status' => $status];
-        if (isset($other) && is_array($other)) {
-            foreach ($other as $k => $v) {
-                $arr[$k] = $v;
-            }
-        }
-        if (isset($data) && is_array($data)) {
-            $arr['data'] = $data;
-        }
-
-        if (isset($superaddition) && is_array($superaddition)) {
-            foreach ($superaddition as $k => $v) {
-                $arr[$k] = $v;
-            }
-        }
-        exit(json_encode($arr));
-    }
 
     //加密信息
     protected function keyword_encode($string, $operation = 'DECODE', $key = '', $expiry = 0)
@@ -133,5 +113,68 @@ class CommonController extends Controller
         }
         return array();
     }
+
+    //多维数组变单维
+    protected function changeArray($arr = array(), $key)
+    {
+        if (is_array($arr) && !empty($key)) {
+            $newArray = array();
+            foreach ($arr as $v) {
+                array_push($newArray,$v[$key]);
+            }
+            return $newArray;
+        }
+        return array();
+    }
+
+
+    /**
+     *文件上传方法
+     * @param String $fileName $_FILE文件对应值
+     * @param String $uploadType true为单文件上传，false为多文件上传
+     * @param Array $fileType 允许上传文件的类型
+     * @param String $branchDirectory 上传文件的分支路径
+     * @return 文件上传信息
+     */
+    protected function fileUpload($fileName, $uploadType = true, $fileType = array('jpg', 'gif', 'png', 'jpeg'), $branchDirectory = 'images/')
+    {
+        $year = date('Y');    //年
+        $month = date('m');    //月
+        $day = date('d');    //日
+        $savePath = "/Upload/{$branchDirectory}{$year}/{$month}/{$day}/";
+        //$savePath = str_replace(DIRECTORY_SEPARATOR, '/', $systemSavePath);
+        $directory = PATH_DIR.$savePath;
+        if (!file_exists($directory)) {
+            $mkInfo = mkdir($directory, 0777, true);
+            if (!$mkInfo) {    //创建失败时处理
+                return "{$savePath}目录创建失败!";
+            }
+        }
+        $uploader = new Upload();
+        $uploader->rootPath = PATH_DIR;    //设置上传文件根目录
+        $uploader->exts = $fileType;
+        $uploader->saveName = array('uniqid','');
+        $uploader->savePath = $savePath;    //设置保存文件路径
+        $uploader->autoSub = false;    //不使用子目录保存
+        if ($uploadType) {
+            $info = $uploader->uploadOne($fileName);
+        } else {
+            $info = $uploader->upload();
+        }
+        if ($info) {
+            return $info;
+        } else {
+            return $uploader->getError();
+        }
+
+    }
+
+
+    //生成上传文件url方法
+    public function setUploadFileUrl($fileInfoArray)
+    {
+        return 'http://'.$_SERVER['HTTP_HOST'].$fileInfoArray['savepath'].$fileInfoArray['savename'];
+    }
+
 
 }

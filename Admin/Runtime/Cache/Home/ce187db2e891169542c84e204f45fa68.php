@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <form method="post" action="/admin.php/Home/Login/login.html" name="login">
+                <form method="post" action="/admin.php/Home/Login/login" name="login">
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md" id="notice"><?php echo ($_GET['message']); ?></p>
                     <input type="text" class="form-control uname" placeholder="用户名" name="account" id="account" value="<?php echo (cookie('account')); ?>"/>

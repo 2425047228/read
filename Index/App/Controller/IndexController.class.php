@@ -23,7 +23,7 @@ class IndexController extends CommonController
         parent::__construct();
         $visit = I('post.visit');
         if (empty($visit) || $visit !== 'public') {
-            $this->returnInformation(2, '非法访问');
+            $this->returnCode(2);
         }
     }
 
@@ -72,7 +72,7 @@ class IndexController extends CommonController
                 ->distinct(true)
                 ->join('left join __BOOK__ b on c.book_id = b.id')
                 ->where($where)->count();
-            $pageCount = ceil($count / 10);
+            $pageCount = ceil($count / $limit['limit']);
 
 
             //书籍列表
@@ -88,6 +88,7 @@ class IndexController extends CommonController
             $bookList = $this->checkData($bookList);
             $this->returnInformation(0, 'OK', ['pageCount' => $pageCount, 'bookList' => $bookList]);
         }
+        $this->returnCode(1);
     }
 
     /**
@@ -143,10 +144,11 @@ class IndexController extends CommonController
         if (!empty($bookId) && is_numeric($bookId)) {
             $setInfo = M('Book')->where(['id' => $bookId])->setInc('searched', 1);
             if ($setInfo) {
-                $this->returnInformation(0, 'OK');
+                $this->returnCode(0);
             }
-            $this->returnInformation(1, 'FAIL');
+            $this->returnCode(3);
         }
+        $this->returnCode(1);
     }
 
     /**
@@ -159,7 +161,7 @@ class IndexController extends CommonController
     public function book()
     {
         $bookId = I('post.bookId');
-        if (!empty($bookId) && is_array($bookId)) {
+        if (!empty($bookId) && is_numeric($bookId)) {
             //图书信息
             $bookInfo = M('Book')->alias('b')
                 ->field('b.id, b.book_cover,b.book_name,a.author,b.shelves_time,b.number_of_words,b.book_synopsis,a.author_synopsis')
@@ -183,10 +185,10 @@ class IndexController extends CommonController
             //检查数据
             $bookInfo = $this->checkData($bookInfo);
             $bookInfo['shelves_time'] = date('Y.m.d', $bookInfo['shelves_time']);
-            $categories = $this->checkData($categories);
+            $categories = $this->changeArray($categories,'category');
             $this->returnInformation(0, 'OK', ['bookInfo' => $bookInfo, 'categories' => $categories, 'isExistsBookshelf' => $isExistsBookshelf]);
         }
-        $this->returnInformation(1, '参数错误');
+        $this->returnCode(1);
     }
 
     /**
@@ -200,7 +202,7 @@ class IndexController extends CommonController
     {
         $page = I('post.page');
         $bookId = I('post.bookId');
-        $validate = !empty($page) && is_numeric($page) && !empty($b_id) && is_numeric($bookId);
+        $validate = !empty($page) && is_numeric($page) && !empty($bookId) && is_numeric($bookId);
         if ($validate) {
             $limit = $this->page($page);
             $chapter = M('Chapter')
@@ -212,7 +214,7 @@ class IndexController extends CommonController
             $chapter = $this->checkData($chapter);
             $this->returnInformation(0, 'OK', $chapter);
         }
-        $this->returnInformation(1, '参数错误');
+        $this->returnCode(1);
     }
 
     /**
@@ -236,7 +238,7 @@ class IndexController extends CommonController
                 ->where(['book_id' => $bookId, 'chapter_sort' => $chapter])
                 ->find();
             $nextChapter = $chapterObject->where(['book_id' => $bookId, 'chapter_sort' => ($chapter + 1)])->getField('chapter');
-            //$bookName = M('Book')->where(['id' => I('get.b_id')])->getField('book_name');
+            $bookName = M('Book')->where(['id' => I('get.b_id')])->getField('book_name');
             //判断该书是否存在于书架
             $isExistsBookshelf = '0';
             if (!empty($this->token)) {
@@ -247,10 +249,139 @@ class IndexController extends CommonController
             }
 
             $chapterInfo = $this->checkData($chapterInfo);
-            $this->returnInformation(0,'OK',['nextChapter'=>$nextChapter,'isExistsBookshelf'=>$isExistsBookshelf,'chapterInfo'=>$chapterInfo]);
+            $this->returnInformation(0,'OK',['nextChapter'=>$nextChapter,'isExistsBookshelf'=>$isExistsBookshelf,'chapterInfo'=>$chapterInfo,'bookName'=>$bookName]);
         }
-        $this->returnInformation(1,'参数错误');
+        $this->returnCode(1);
 
     }
 
+    /**
+     * 用户注册接口
+     * @method post
+     * @post String openid 用户微信登陆的openid
+     * @post String nickName 用户昵称
+     * @post String || Int sex 用户性别,传入int值时：1：男，2：女，3：未填写
+     */
+    public function register()
+    {
+        $openid = I('post.openid');
+        $nickName = I('post.nickName');
+        $sex = I('post.sex');
+        $avatar = I('post.avatar');
+        $vaildate = !empty($openid) && !empty($nickName) && !empty($sex) && !empty($avatar);
+        if ($vaildate) {
+            $user = M('User');
+            $userFind = $user->where(['openid'=>$openid])->getField('id');
+            $time = time();
+            //添加操作
+            if (!$userFind) {
+                try{
+                    $userFind = $user->add([
+                        'openid'=>$openid,
+                        'nick_name'=>$nickName,
+                        'avatar_file'=>$avatar,
+                        'sex'=>$sex,
+                        'register_time' => $time,
+                    ]);
+                }catch (\Exception $e) {
+                    //防止昵称问题无法添加
+                    $newNickName = '用户'.rand(1000,9999);
+                    $userFind = $user->add([
+                        'openid'=>$openid,
+                        'nick_name'=>$newNickName,
+                        'avatar_file'=>$avatar,
+                        'sex'=>$sex,
+                        'register_time' => $time,
+                    ]);
+                }
+            }
+            $token = $this->keyword_encode($time.$userFind, 'ENCODE');
+            $this->returnInformation(0,'OK',['token'=>$token]);
+        }
+        $this->returnCode(1);
+    }
+
+    /**
+     *美文列表
+     * @method post
+     * @post null
+     * @return String json字符串
+     */
+    public function b_words()
+    {
+        $page = I('post.page');
+        if (!empty($page) && is_numeric($page)) {
+            $limit = $this->page($page);
+            $beautifulWords = M('Beautiful_words');
+            $beautifulWordsList = $beautifulWords
+                ->field('id,title,author,cover,see,editor_way,url,listen,praise,sent_time')
+                ->order('id desc')
+                ->limit($limit['page'],$limit['limit'])
+                ->select();
+            $pageCount = $beautifulWords->count();
+            $beautifulWordsList = $this->checkData($beautifulWordsList);
+            $count = ceil($pageCount/$limit['limit']);
+            $this->returnInformation(0,'OK',['beautifulWordsList'=>$beautifulWordsList,'count'=>$count]);
+        }
+        $this->returnCode(1);
+    }
+
+    /**
+     *美文详情
+     * @method post
+     * @post String||Int articleId 文章id
+     * @return String json字符串
+     */
+    public function article()
+    {
+        $articleId = I('post.articleId');
+        if (!empty($articleId) && is_numeric($articleId)) {
+            $article = M('Beautiful_words')->field('id,title,content,audio,see,listen,praise')->where(['id'=>$articleId])->find();
+            if ($article) {
+                $article['content'] = htmlspecialchars_decode($article['content']);
+                $this->returnInformation(0,'OK',$article);
+            }
+            $this->returnCode('文章不存在！');
+        }
+        $this->returnCode(1);
+    }
+
+    /**
+     *美文：赞，收听，阅读人数递增接口
+     * @method post
+     * @post String type 递增类型
+     * @post String||Int articleId 文章id
+     * @return String json字符串
+     */
+    public function article_up()
+    {
+        $type = I('post.type');
+        $articleId = I('post.articleId');
+        if (!empty($type) && !empty($articleId) && is_numeric($articleId)) {
+            $beautifulWords = M('Beautiful_words');
+            $addInfo = false;
+            switch ($type)
+            {
+                case 'readed':
+                    $addInfo = $beautifulWords->where(['id'=>$articleId])->setInc('see',1);
+                    break;
+                case 'listened':
+                    $addInfo = $beautifulWords->where(['id'=>$articleId])->setInc('listen',1);
+                    break;
+                case 'like':
+                    $addInfo = $beautifulWords->where(['id'=>$articleId])->setInc('praise',1);
+                    break;
+            }
+            if ($addInfo) {
+                $this->returnCode(0);
+            }
+            $this->returnCode(3);
+        }
+        $this->returnCode(1);
+    }
+
+    /**
+     *
+     *
+     */
 }

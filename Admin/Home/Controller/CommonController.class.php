@@ -122,7 +122,7 @@ class CommonController extends EmptyController
                 exit(json_encode($returnInfo));
             }
             $returnInfo['state'] = 'SUCCESS';
-            $returnInfo['url'] = $upFile['savepath'].$upFile['savename'];
+            $returnInfo['url'] = 'http://'.$_SERVER['HTTP_HOST'].$upFile['savepath'].$upFile['savename'];
             $returnInfo['title'] = $upFile['savename'];
             exit(json_encode($returnInfo));
         }
