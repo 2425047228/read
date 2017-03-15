@@ -171,9 +171,45 @@ class CommonController extends EmptyController
 
 
     //生成上传文件url方法
-    public function setUploadFileUrl($fileInfoArray)
+    protected function setUploadFileUrl($fileInfoArray)
     {
         return 'http://'.$_SERVER['HTTP_HOST'].$fileInfoArray['savepath'].$fileInfoArray['savename'];
+    }
+
+    //发送验证码方法
+    protected function sendCode($mobile = '默认网站管理员的手机号'){
+        $apikey = "9b70d20995000236663c521a092ac776"; //修改为您的apikey(https://www.yunpian.com)登陆官网后获取
+        $chars = "0123456789";
+        $str = "";
+        for ($i = 0; $i < 4; $i++) {
+            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
+        $text="【诗奈尔洗护】您的验证码是".$str;
+
+        $data=array('text'=>$text,'apikey'=>$apikey,'mobile'=>$mobile);
+        //发送数据
+        $ch = curl_init("https://sms.yunpian.com/v1/sms/send.json");
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $tmpInfo = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        $array = json_decode($tmpInfo, true);
+        if($array['code'] == 0 && $array['msg'] == "OK"){
+            $array['validateCode'] = $str;
+        }else{
+            $array['validateCode'] = false;
+        }
+        return $array;
+
     }
 
 

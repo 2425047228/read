@@ -1,0 +1,282 @@
+[ 2017-03-15T09:40:42+08:00 ] 127.0.0.1 /App/User/user_c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.031494s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.046378s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.046434s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:2.9759s ]
+SQL: SELECT `avatar_file`,`nick_name`,`sex` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.5489s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.8552s ]
+SQL: SELECT c.id,c.category FROM rd_user_hobbys u left join rd_category c on c.id = u.category_id  WHERE u.user_id = '3'  [ RunTime:0.9548s ]
+
+[ 2017-03-15T09:50:47+08:00 ] 127.0.0.1 /App/User/hobbys
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.035113s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008449s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008488s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0037s ]
+SQL: SELECT `id`,`category` FROM `rd_category`  [ RunTime:0.0003s ]
+
+[ 2017-03-15T09:56:58+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0235s ]
+SQL: SELECT `id` FROM `rd_category` LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2017-03-15T09:57:31+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000405s ]
+SQL: SHOW COLUMNS FROM `rd_category` [ RunTime:0.0193s ]
+SQL: SELECT `id` FROM `rd_category`  [ RunTime:0.0002s ]
+
+[ 2017-03-15T10:34:51+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000613s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0029s ]
+SQL: UPDATE `rd_user` SET `nick_name`='杨帅',`sex`='2' WHERE `id` = 3 [ RunTime:0.0412s ]
+
+[ 2017-03-15T10:36:12+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000342s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000374s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0026s ]
+SQL: DELETE FROM `rd_user_hobbys` WHERE `user_id` = 3 [ RunTime:0.0275s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','1') [ RunTime:0.0387s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','3') [ RunTime:0.0003s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','4') [ RunTime:0.0001s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','6') [ RunTime:0.0001s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','7') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0029s ]
+
+[ 2017-03-15T10:37:11+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000597s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0413s ]
+SQL: DELETE FROM `rd_user_hobbys` WHERE `user_id` = 3 [ RunTime:0.0726s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','1') [ RunTime:0.0106s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','3') [ RunTime:0.0002s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','4') [ RunTime:0.0001s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','6') [ RunTime:0.0001s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','7') [ RunTime:0.0001s ]
+
+[ 2017-03-15T10:37:38+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000288s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0179s ]
+SQL: DELETE FROM `rd_user_hobbys` WHERE `user_id` = 3 [ RunTime:0.0781s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','6') [ RunTime:0.0066s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','7') [ RunTime:0.0001s ]
+
+[ 2017-03-15T10:37:55+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000372s ]
+
+[ 2017-03-15T10:42:30+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001440s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001537s ]
+
+[ 2017-03-15T10:42:40+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000355s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000390s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0384s ]
+SQL: DELETE FROM `rd_user_hobbys` WHERE `user_id` = 3 [ RunTime:0.0823s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','6') [ RunTime:0.0155s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','7') [ RunTime:0.0002s ]
+
+[ 2017-03-15T10:42:49+08:00 ] 127.0.0.1 /App/User/profile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000392s ]
+SQL: SHOW COLUMNS FROM `rd_user_hobbys` [ RunTime:0.0451s ]
+SQL: DELETE FROM `rd_user_hobbys` WHERE `user_id` = 3 [ RunTime:0.0647s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','6') [ RunTime:0.0114s ]
+SQL: INSERT INTO `rd_user_hobbys` (`user_id`,`category_id`) VALUES ('3','7') [ RunTime:0.0002s ]
+
+[ 2017-03-15T11:13:09+08:00 ] 127.0.0.1 /App/User/avatar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+NOTIC: [8] Undefined index: avatar D:\PROJECT\read\Index\App\Controller\UserController.class.php 第 223 行.
+
+[ 2017-03-15T11:14:20+08:00 ] 127.0.0.1 /App/User/avatar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000291s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000355s ]
+NOTIC: [8] Undefined index: avatar D:\PROJECT\read\Index\App\Controller\UserController.class.php 第 223 行.
+
+[ 2017-03-15T11:14:52+08:00 ] 127.0.0.1 /App/User/avatar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000354s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\PROJECT\read\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0604s ]
+SQL: SELECT `avatar_file` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `rd_user` SET `avatar_file`='http://read.index.com/Upload/images/2017/03/15/58c8b1abdf7ef.jpg' WHERE `id` = 3 [ RunTime:0.1129s ]
+
+[ 2017-03-15T11:16:42+08:00 ] 127.0.0.1 /App/User/avatar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000340s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000832s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000864s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\PROJECT\read\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0025s ]
+SQL: SELECT `avatar_file` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `rd_user` SET `avatar_file`='http://read.index.com/Upload/images/2017/03/15/58c8b21a33329.jpg' WHERE `id` = 3 [ RunTime:0.0793s ]
+NOTIC: [2] unlink(/Upload/images/2017/03/15/58c8b1abdf7ef.jpg): No such file or directory D:\PROJECT\read\Index\App\Controller\UserController.class.php 第 235 行.
+
+[ 2017-03-15T11:18:01+08:00 ] 127.0.0.1 /App/User/avatar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given D:\PROJECT\read\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.0029s ]
+SQL: SELECT `avatar_file` FROM `rd_user` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0002s ]
+SQL: UPDATE `rd_user` SET `avatar_file`='http://read.index.com/Upload/images/2017/03/15/58c8b2695dcc6.jpg' WHERE `id` = 3 [ RunTime:0.0950s ]
+
+[ 2017-03-15T11:41:18+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000602s ]
+
+[ 2017-03-15T11:43:56+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001182s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001312s ]
+
+[ 2017-03-15T11:52:26+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000562s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+
+[ 2017-03-15T11:54:16+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000270s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000383s ]
+
+[ 2017-03-15T11:55:36+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000588s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000623s ]
+
+[ 2017-03-15T11:55:53+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000285s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000391s ]
+
+[ 2017-03-15T11:55:56+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000364s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000399s ]
+
+[ 2017-03-15T11:56:16+08:00 ] 127.0.0.1 /App/User/bind_m
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000392s ]
+
+[ 2017-03-15T14:02:08+08:00 ] 127.0.0.1 /App/User/bind_p
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.039350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.011780s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011849s ]
+SQL: SHOW COLUMNS FROM `rd_user` [ RunTime:0.6092s ]
+SQL: UPDATE `rd_user` SET `mobile_number`='18745729547' WHERE `id` = 3 [ RunTime:0.4308s ]
+
+[ 2017-03-15T15:09:46+08:00 ] 127.0.0.1 /App/User/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000580s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000612s ]
+
+[ 2017-03-15T15:11:38+08:00 ] 127.0.0.1 /App/User/feedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000394s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `rd_back` [ RunTime:0.8581s ]
+SQL: INSERT INTO `rd_back` (`u_id`,`content`,`time`) VALUES ('3','asfdsfdsfdsfsdafadsfsdafdfassssssssaffsdfdfsdfdsdffsdfsdfd','1489561898') [ RunTime:0.3782s ]
+

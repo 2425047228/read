@@ -5,8 +5,92 @@
     <title><block name="title"></block></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" name="viewport" />
     <link rel="stylesheet" type="text/css" href="{:C('CSS')}common.css"/>
+	<block name="cssjs">
     <script src="{:C('JS')}common.js" type="text/javascript" charset="utf-8"></script>
+	</block>
     <script src="{:C('JS')}jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{:C('JS')}smh_alert.js" type="text/javascript" charset="utf-8"></script>
+	<meta name="format-detection" content="telephone=no, email=no"/>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script>  
+	wx.config({
+		debug: false,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: '<?php echo $signPackage["timestamp"];?>',
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'chooseImage',
+		'previewImage',
+		'uploadImage',
+		'downloadImage',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'onMenuShareQZone',
+		'showOptionMenu',
+		'showMenuItems',
+		'hideOptionMenu',
+		'hideMenuItems'
+		]
+	});
+	//wx.hideAllNonBaseMenuItem();
+	
+	 wx.ready(function(){
+		//if(type == 1){
+    		wx.checkJsApi({jsApiList: ['checkJsApi','showOptionMenu','onMenuShareAppMessage','onMenuShareQQ','onMenuShareQZone'],success: function (res) {}});
+    		wx.showOptionMenu();
+    		
+    		wx.onMenuShareAppMessage({
+				title: '<?php echo $fenxiang["title"];?>', // 分享标题
+				desc: '<?php echo $fenxiang["desc"];?>', // 分享描述
+				link: '<?php echo $fenxiang["url"];?>', // 分享链接
+				imgUrl: '<?php echo $fenxiang["img"];?>', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					
+				}
+			}); 
+			wx.onMenuShareQQ({
+				title: '<?php echo $fenxiang["title"];?>', // 分享标题
+				desc: '<?php echo $fenxiang["desc"];?>', // 分享描述
+				link: '<?php echo $fenxiang["url"];?>', // 分享链接
+				imgUrl: '<?php echo $fenxiang["img"];?>', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					
+				}
+			}); 
+			wx.onMenuShareQZone({
+				title: '<?php echo $fenxiang["title"];?>', // 分享标题
+				desc: '<?php echo $fenxiang["desc"];?>', // 分享描述
+				link: '<?php echo $fenxiang["url"];?>', // 分享链接
+				imgUrl: '<?php echo $fenxiang["img"];?>', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					
+				}
+			}); 
+
+    		
+		//}else{
+			//wx.checkJsApi({jsApiList: ['checkJsApi','hideMenuItems'],success: function (res) {}});
+    		//wx.showOptionMenu();
+    		//wx.hideOptionMenu();
+		//}
+    });
+    
+    wx.error(function(res){
+		// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+	
+	});
+
+</script>
     <block name="static"><!--js,css等静态文件使用区--></block>
 </head>
 <block name="body">

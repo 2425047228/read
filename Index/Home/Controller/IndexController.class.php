@@ -6,8 +6,24 @@ use Org\Weixin\jssdk;
 
 class IndexController extends CommonController
 {
+	
+	private function fenxiang(){
+		
+		
+		$fenxiang['title'] = "芝麻阅读，免费好书，精彩不断！";
+		$fenxiang['desc'] = "书已经帮您选好了，我们在芝麻阅读等您......";
+		$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+		$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("index");
+		return $fenxiang;
+	}
+	
     public function index()
     {
+		
+		$share = $this -> share();
+		$this -> assign("signPackage",$share);
+		$fenxiang = $this -> fenxiang();
+		$this -> assign("fenxiang",$fenxiang);
         if (empty(cookie('openid')) || empty(cookie('userId'))) {
             $cookieTime = C('COOKIE_TIME');
             $userInfo = weixinuserinfo();
@@ -23,14 +39,14 @@ class IndexController extends CommonController
                         'register_time' => time(),
                     ]);
                     if ($addinfo) {
-                        cookie('userId', $addinfo, $cookieTime);
+                        cookie('userId', $addinfo);
                     }
                 }catch (\Exception $e) {}
             } else {
-                cookie('userId', $userFind['id'], $cookieTime);
+                cookie('userId', $userFind['id']);
             }
-            cookie('openid',$userInfo['openid'],$cookieTime);
-            cookie('avatarFile', $userInfo['headimgurl'], $cookieTime);
+            cookie('openid',$userInfo['openid']);
+            cookie('avatarFile', $userInfo['headimgurl']);
         }
 
         //获取banner

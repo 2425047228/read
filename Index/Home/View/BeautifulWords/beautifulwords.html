@@ -2,7 +2,7 @@
 <block name="title">美文</block>
 <block name="static">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Index/css/dropload.css"/>
-<meta name="format-detection" content="telephone=no, email=no"/>
+
 </block>
 <block name="body">
 	<body>
@@ -34,7 +34,7 @@
 							<div class="art_li_right">
 								<p class="art_li_p1">{$be.author}<em class="color_hui">{$be.sent_time|date="Y.m.d",###}</em></p>
 								<h4>{$be.title}</h4>
-								<p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>152</span><span class="art_li_p2_2"><em></em>152</span><span class="art_li_p2_3" be="{$be.id}"><em></em>152</span></p>
+								<p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>{$be.see}</span><span class="art_li_p2_2"><em></em>{$be.listen}</span><span class="art_li_p2_3" be="{$be.id}"><em></em>{$be.praise}</span></p>
 							</div>
 					</li>
 				</foreach>
@@ -60,11 +60,12 @@
 				$('.art_art').on('click','.art_li_p2_3',function(e){
 					e.stopPropagation();
 					var id = $(this).attr("be");
-					alert(id);
 					if($(this).find('em').hasClass('art_li_p2_3_em1')){
 						$(this).find('em').removeClass('art_li_p2_3_em1');
+						$.post("__CONTROLLER__/praise",{id:id,state:0});
 					}else{
 						$(this).find('em').addClass('art_li_p2_3_em1');
+						$.post("__CONTROLLER__/praise",{id:id,state:1});
 					}
 				});
 				
@@ -81,11 +82,17 @@
 						return false;
 					}
 					//请求后台后执行
+					var search = $('#search_input').val();
+					$.post("__CONTROLLER__/search",{search:search},function(data){
+						$('.art_art ul').html(data);
+					})
 					
-					$('.art_art ul li').remove();
 					
-					var html='<li id="5"><div class="art_li_left"><img src="__PUBLIC__/Index/images/test_bg.png" alt=""/></div><div class="art_li_right"><p class="art_li_p1">作者<em class="color_hui">2014.09.09</em></p><h4>标题</h4><p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>152</span><span class="art_li_p2_2"><em></em>152</span><span class="art_li_p2_3"><em></em>152</span></p></div></li>';
-					$('.art_art ul').append(html);
+					//$('.art_art ul li').remove();
+					
+					//var html='<li id="5"><div class="art_li_left"><img src="__PUBLIC__/Index/images/test_bg.png" alt=""/></div><div class="art_li_right"><p class="art_li_p1">作者<em class="color_hui">2014.09.09</em></p><h4>标题</h4><p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>152</span><span class="art_li_p2_2"><em></em>152</span><span class="art_li_p2_3"><em></em>152</span></p></div></li>';
+					//$('.art_art ul').append(html);
+					
 					//如果搜索无结果,显示novel_secnull
 				});
 			});
@@ -96,7 +103,7 @@
 		    var itemIndex = 0;
 		    var bool=[false,false,false,false];
 		
-		
+		var number = 2;
 		    // dropload
 		    var dropload = $('.art_art').dropload({
 		        scrollArea : window,
@@ -106,29 +113,45 @@
 		            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
 		            domNoData  : '<div class="dropload-noData">到底啦</div>'
 		        },
+				
 		        loadDownFn : function(me){
-		        		
-		        		var result = '';
-                    for(var i = 0; i < 4; i++){
-                        result +='<li id="'+(i+10)+'"><div class="art_li_left"><img src="__PUBLIC__/Index/images/test_bg.png" alt=""/></div><div class="art_li_right"><p class="art_li_p1">作者<em class="color_hui">2014.09.09</em></p><h4>标题</h4><p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>152</span><span class="art_li_p2_2"><em></em>152</span><span class="art_li_p2_3"><em></em>152</span></p></div></li>';
-                        if(i== 3){
-                            // 数据加载完
-                            bool[itemIndex] = true;
-                            console.log(bool);
-                            // 锁定
-                            me.lock();
-                            // 无数据
-                            me.noData();
-                            break;
-                        }
-                    }
-                    // 为了测试，延迟1秒加载
-                    setTimeout(function(){
-                        $('.art_art ul').append(result);
-                        // 每次数据加载完，必须重置
-                        me.resetload();
-                    },1000);
-		        		
+					//window.location.href="__CONTROLLER__/xiala?number="+number;
+					$.post("__CONTROLLER__/xiala",{number:number},function(data){
+					//console.log(data.length);
+							if(data.length == 0){
+								me.lock();
+								// 无数据
+								me.noData();
+							}
+							var result = '';
+							var len = data.length;
+							for(var i = 0; i < len; i++){
+								result +='<li id="'+data[i]['id']+'"><div class="art_li_left"><img src="__PUBLIC__/Index/images/test_bg.png" alt=""/></div><div class="art_li_right"><p class="art_li_p1">'+data[i]['author']+'<em class="color_hui">'+data[i]['sent_time']+'</em></p><h4>'+data[i]['title']+'</h4><p class="art_li_p2 color_hui"><span class="art_li_p2_1"><em></em>'+data[i]['see']+'</span><span class="art_li_p2_2"><em></em>'+data[i]['listen']+'</span><span class="art_li_p2_3"><em></em>'+data[i]['praise']+'</span></p></div></li>';
+								
+								
+								/*
+								if(i== 3){
+									// 数据加载完
+									bool[itemIndex] = true;
+									console.log(bool);
+									// 锁定
+									me.lock();
+									// 无数据
+									me.noData();
+									break;
+								}
+								*/
+							}
+						
+						// 为了测试，延迟1秒加载
+						setTimeout(function(){
+							$('.art_art ul').append(result);
+							// 每次数据加载完，必须重置
+							me.resetload();
+						},1000);
+					
+					})
+		        	number = number+1;
 		        }
 		    });
 		});

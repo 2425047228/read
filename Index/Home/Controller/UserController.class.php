@@ -10,6 +10,22 @@ namespace Home\Controller;
 
 class UserController extends CommonController
 {
+	private function fenxiang(){
+		
+		
+		$fenxiang['title'] = "芝麻阅读，免费好书，精彩不断！";
+		$fenxiang['desc'] = "书已经帮您选好了，我们在芝麻阅读等您......";
+		$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+		$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("User/login");
+		return $fenxiang;
+	}
+	
+	
+	public function login(){
+		$this -> display();
+	}
+	
+	
 	public function user(){
 		if (empty(cookie('openid')) || empty(cookie('userId'))) {
             $cookieTime = C('COOKIE_TIME');
@@ -40,8 +56,17 @@ class UserController extends CommonController
 	
 	//个人中心 展示页面
 	public function me(){
+		
+		$share = $this -> share();
+		$this -> assign("signPackage",$share);
+		$fenxiang = $this -> fenxiang();
+		$this -> assign("fenxiang",$fenxiang);
+		
 		$this -> user();
 		$userid = cookie("userId");
+		if(!$userid){
+			$this -> redirect("login");
+		}
 		$data = M("user") -> where(["id"=>$userid]) -> find();
 		$data["hobby"] = M("user_hobbys") -> where(['user_id'=>$userid]) -> field("category_id") -> select();
 		foreach($data['hobby'] as $k=>$v){
@@ -121,14 +146,14 @@ class UserController extends CommonController
 	
 	//获取短信验证码
 	public function yanzheng(){
-		$mobile = I("post.mobile");
-		$mob = I("post.mob");
+		//$mobile = I("post.mobile");
+		//$mob = I("post.mob");
 		$apikey = "9b70d20995000236663c521a092ac776"; //修改为您的apikey(https://www.yunpian.com)登陆官网后获取
 		//$mobile = $mobile; //请用自己的手机号代替
-		if($mobile != $mob){
-			echo "手机号不正确";
-			exit;
-		}
+		// if($mobile != $mob){
+			// echo "手机号不正确";
+			// exit;
+		// }
 		$chars = "0123456789";
 		$str = "";
 		for ($i = 0; $i < 4; $i++) {

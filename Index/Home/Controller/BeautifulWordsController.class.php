@@ -10,9 +10,24 @@ namespace Home\Controller;
 
 class BeautifulWordsController extends CommonController
 {
+	private function fenxiang(){
+		
+		
+		$fenxiang['title'] = "芝麻阅读，免费好书，精彩不断！";
+		$fenxiang['desc'] = "每日更新精选美文，日日更新日日新，充分利用起你的碎片时间。";
+		$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+		$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("beautifulwords");
+		return $fenxiang;
+	}
 	
 	//美文列表
 	public function beautifulwords(){
+		
+		$share = $this -> share();
+		$this -> assign("signPackage",$share);
+		$fenxiang = $this -> fenxiang();
+		$this -> assign("fenxiang",$fenxiang);
+		
 		$table = M("beautiful_words");
 		$list = $table -> order("id DESC") -> limit(4) -> select();
 		$this -> assign("list",$list);
@@ -26,8 +41,18 @@ class BeautifulWordsController extends CommonController
 		$table -> where(['id'=>$id]) -> setInc("see",1);
 		$data = $table -> where("id = ".$id) -> find();
 		$data['content'] = htmlspecialchars_decode($data['content']);
-		//dump($data);
 		$this -> assign("data",$data);
+		
+		//dump($data);
+		//分享信息
+		$share = $this -> share();
+		$this -> assign("signPackage",$share);
+		
+		$fenxiang['title'] = $data['title'];
+		$fenxiang['desc'] = "看更多精彩美文，读更多经典好书，尽在芝麻阅读。";
+		$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+		$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("detail",array("id"=>$id));
+		$this -> assign("fenxiang",$fenxiang);
 		$this -> display();
 	}
 	

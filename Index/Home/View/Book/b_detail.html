@@ -1,5 +1,7 @@
 <extend name="Base:base" />
 <block name="title">书籍详情</block>
+<block name="cssjs">
+</block>
 <block name="static">
 	<script type="text/javascript">
 		var html = document.getElementsByTagName('html')[0];
@@ -65,12 +67,12 @@
 	</article>
 	<!--二维码部分(背景和img都要换路径)-->
 	<div class="detail_share">
-		<div class="detail_share_left" style="background-image: url({:C('IMG')}2.jpg);"></div>
+		<div class="detail_share_left" style="background-image: url({:C('IMG')}zhima.jpg);"></div>
 		<div class="color_black detail_share_right">
 			<p>长按二维码关注[芝麻阅读]</p>
 			<p>看更多免费好书......</p>
 		</div>
-		<img src="{:C('IMG')}2.jpg" alt=""/>
+		<img src="{:C('IMG')}zhima.jpg" alt=""/>
 	</div>
 	<div id="bookback_alert"></div>
 	<script type="text/javascript">

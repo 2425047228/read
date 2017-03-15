@@ -1,0 +1,118 @@
+<extend name="Base:base" />
+<block name="title">美文</block>
+<block name="body">
+		<style type="text/css">
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="music_head">
+			<h4>{$data.title}</h4>
+		</header>
+		<article class="muisc_art">
+			{$data.content}
+		</article>
+		<footer>
+			<if condition="$data['audio'] neq NULL">
+			<div id="music_div">
+				<div class="progress">
+					<div class="progress-bar" style="background:rgb(252,96,75); ">
+						<span></span>
+					</div>
+				</div>
+				<div class="music_bottom">
+					<div id="music_button">
+						<em></em>
+					</div>
+					<div class="music_right">
+						<span class="art_li_p2_1"><em></em>{$data.see}</span><span class="art_li_p2_2"><em></em>{$data.listen}</span><span class="art_li_p2_3"><em></em>{$data.praise}</span>
+					</div>
+				</div>
+				
+				<!-- <audio id="music" src="http://wangzhijia.dev.shuxier.com/V1.0.2/card/heka/music/Victory.mp3" preload="auto"></audio> -->
+				<audio id="music" src="{$data.audio}" preload="auto"></audio>
+				<script type="text/javascript">
+					var i=0;
+					var time=320;
+					$(function(){ 
+						
+						var music = document.getElementById('music');
+					
+						//绑定事件
+						music.addEventListener('timeupdate',function(){
+									$('.progress-bar').addClass('progress-bar1');
+									if(music.currentTime.toFixed(2)>time){
+										$('.progress-bar').css('width','100%');
+										i=1;
+									}else{
+										$('.progress-bar').css('width',music.currentTime.toFixed(2)/time*100+'%');
+									i++;
+									}
+						},false);
+						//绑定事件
+						music.addEventListener('ended',function(){
+							$('#music_button').find('em').removeClass('music_button_em1');
+							$('.progress-bar').removeClass('progress-bar1');
+							
+						},false);
+					});
+				
+				</script>
+				
+				
+			</div>
+			</if>
+		</footer>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				//点赞
+				$('.art_li_p2_3').click(function(e){
+					e.stopPropagation();
+					var id = "{$data.id}";
+					if($(this).find('em').hasClass('art_li_p2_3_em1')){
+						
+						$(this).find('em').removeClass('art_li_p2_3_em1');
+						$.post("__CONTROLLER__/praise",{id:id,state:0});
+					}else{
+						$(this).find('em').addClass('art_li_p2_3_em1');
+						
+						$.post("__CONTROLLER__/praise",{id:id,state:1});
+					}
+				});
+				//播放
+				var bofang = 0;
+				$('#music_button').click(function(e){
+					if(bofang == 0){
+						var id = "{$data.id}";
+						$.post("__CONTROLLER__/music",{id:id});
+						bofang = 1;
+					}
+					if($(this).find('em').hasClass('music_button_em1')){
+						$("audio")[0].pause();
+						$(this).find('em').removeClass('music_button_em1');
+					}else{
+						$(this).find('em').addClass('music_button_em1');
+						$("audio")[0].play();
+						if(i==1){
+							$('.progress-bar').css('width','0%');
+							i=0;
+						}
+					}
+				});
+				//进度
+				$('.progress').click(function(e){
+					var l=e.pageX/$(window).width();
+					console.log(parseInt(l*time));
+					$('.progress-bar').css('width',l*100+'%');
+					console.log(music.currentTime);
+					music.currentTime=parseInt(l*time);
+				});
+			});	
+		</script>
+	</body>
+</block>

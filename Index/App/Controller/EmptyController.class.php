@@ -15,7 +15,7 @@ class EmptyController extends Controller
 {
     public function _empty()
     {
-        $this->returnCode('接口不存在！');
+        $this->returnCode(5);
     }
 
     //返回成功或失败的信息
@@ -62,6 +62,9 @@ class EmptyController extends Controller
                 break;
             case 4:
                 $this->returnInformation(4,'token不存在！');
+                break;
+            case 5:
+                $this->returnInformation(5,'接口不存在！');
                 break;
         }
     }

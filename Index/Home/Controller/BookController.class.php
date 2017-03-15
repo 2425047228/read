@@ -11,10 +11,24 @@ namespace Home\Controller;
 
 class BookController extends CommonController
 {
+	
+	private function fenxiang(){
+		
+		
+		$fenxiang['title'] = "芝麻阅读，多类型书籍供你选择。";
+		$fenxiang['desc'] = "青春校园，都市言情，玄幻仙侠等，想看哪种选哪种！";
+		$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+		$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("library");
+		return $fenxiang;
+	}
+	
     //图书详情
     public function b_detail()
     {
-        $bookId = I('get.b_id');
+		$bookId = I('get.b_id');
+		
+		
+        
         if (!empty($bookId) && is_numeric($bookId)) {
             //图书信息
             $bookInfo = M('Book')->alias('b')
@@ -22,6 +36,8 @@ class BookController extends CommonController
                 ->join('left join __AUTHOR__ a on a.id = b.author_id')
                 ->where(['b.id'=>$bookId, 'b.book_state' => 1])
                 ->find();
+				
+				
             //分类
            $categories = M('Category')->alias('c')
                 ->field('c.category')
@@ -35,6 +51,15 @@ class BookController extends CommonController
             $this->assign('isExistsBookshelf', $isExistsBookshelf);
             $this->assign('categories', $categories);
             $this->assign('bookInfo', $bookInfo);
+			
+			//分享
+			$share = $this -> share();
+			$this -> assign("signPackage",$share);
+			$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+			$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("b_detail",array("b_id"=>$bookId));
+			$fenxiang['title'] = $bookInfo['book_name'];
+			$fenxiang['desc'] = "看更多详情，读更多好书，尽在芝麻阅读。";
+			$this -> assign("fenxiang",$fenxiang);
             $this->display();
         }
     }
@@ -83,6 +108,17 @@ class BookController extends CommonController
             $this->assign('bookId', $bookId);
             $this->assign('chapterInfo', $chapterInfo);
             $this->assign('bookInfo', $bookInfo);
+			
+			//分享
+			$share = $this -> share();
+			$this -> assign("signPackage",$share);
+			$fenxiang['img'] = "http://".$_SERVER['HTTP_HOST']."/Public/Index/images/share.png";
+			$fenxiang['url'] = $_SERVER['HTTP_HOST'].U("b_detail",array("b_id"=>$bookId));
+			$fenxiang['title'] = $bookInfo['book_name'];
+			$fenxiang['desc'] = "看更多详情，读更多好书，尽在芝麻阅读。";
+			$this -> assign("fenxiang",$fenxiang);
+			
+			
             $this->display();
         }
     }
@@ -122,6 +158,12 @@ class BookController extends CommonController
     //书城
     public function library()
     {
+		
+		$share = $this -> share();
+		$this -> assign("signPackage",$share);
+		$fenxiang = $this -> fenxiang();
+		$this -> assign("fenxiang",$fenxiang);
+		
         $category = I('post.category');
         $page = I('post.page');
         $validate = strlen($category) > 0 && strlen($page) > 0 && is_numeric($category) && is_numeric($page);
